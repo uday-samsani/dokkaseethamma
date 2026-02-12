@@ -2,6 +2,18 @@
 module.exports = {
   darkMode: ['class'],
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+  safelist: [
+    'dark',
+    {
+      pattern: /dark:bg-gray-(700|800|900)/,
+    },
+    {
+      pattern: /dark:text-gray-(100|300|400)/,
+    },
+    {
+      pattern: /dark:border-gray-(600|700)/,
+    },
+  ],
   theme: {
   	extend: {
   		colors: {
