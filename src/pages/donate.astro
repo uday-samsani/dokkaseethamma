@@ -38,8 +38,8 @@ const bankDetails = {
   <section class="relative pt-32 pb-16 lg:pb-24 bg-gradient-to-b from-golden-50 to-cream-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <Badge variant="outline" className="mb-4 text-golden-700 border-golden-300">Support Our Cause</Badge>
-      <h1 class="text-4xl lg:text-5xl font-bold text-earth-900 mb-6">Your Donation <span class="text-golden-600">Matters</span></h1>
-      <p class="text-lg text-earth-600 max-w-2xl mx-auto">Every contribution helps us continue the legacy of Dokka Seethamma and bring hope to those in need.</p>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-earth-900 mb-4 sm:mb-6">Your Donation <span class="text-golden-600">Matters</span></h1>
+      <p class="text-base sm:text-lg text-earth-600 max-w-2xl mx-auto px-4 sm:px-0">Every contribution helps us continue the legacy of Dokka Seethamma and bring hope to those in need.</p>
     </div>
   </section>
 
@@ -50,11 +50,11 @@ const bankDetails = {
         <div>
           <h2 class="text-2xl lg:text-3xl font-bold text-earth-900 mb-6">Make a Donation</h2>
           
-          <div class="grid grid-cols-2 gap-4 mb-6">
+          <div class="grid grid-cols-2 gap-3 sm:gap-4 mb-6">
             {donationAmounts.map((item) => (
-              <button type="button" class="donation-amount-btn p-4 rounded-xl border-2 border-cream-200 text-center hover:border-golden-400 hover:bg-golden-50 transition-all data-[selected=true]:border-golden-500 data-[selected=true]:bg-golden-50" data-amount={item.amount} data-selected="false">
-                <div class="text-2xl font-bold text-earth-900">{item.label}</div>
-                <div class="text-sm text-earth-500 mt-1">{item.description}</div>
+              <button type="button" class="donation-amount-btn min-h-[80px] sm:min-h-[100px] p-3 sm:p-4 rounded-xl border-2 border-cream-200 text-center hover:border-golden-400 hover:bg-golden-50 transition-all data-[selected=true]:border-golden-500 data-[selected=true]:bg-golden-50" data-amount={item.amount} data-selected="false">
+                <div class="text-xl sm:text-2xl font-bold text-earth-900">{item.label}</div>
+                <div class="text-xs sm:text-sm text-earth-500 mt-1">{item.description}</div>
               </button>
             ))}
           </div>
@@ -84,21 +84,21 @@ const bankDetails = {
 
         <!-- Bank Details -->
         <div>
-          <Card className="mb-8 border-golden-100">
-            <CardContent className="p-8">
-              <h3 class="text-xl font-bold text-earth-900 mb-6 flex items-center gap-2">
-                <CheckCircle className="w-6 h-6 text-golden-600" />Bank Transfer Details
+          <Card className="mb-6 sm:mb-8 border-golden-100">
+            <CardContent className="p-4 sm:p-8">
+              <h3 class="text-lg sm:text-xl font-bold text-earth-900 mb-4 sm:mb-6 flex items-center gap-2">
+                <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-golden-600 flex-shrink-0" />Bank Transfer Details
               </h3>
-              <div class="space-y-4">
+              <div class="space-y-3 sm:space-y-4">
                 {Object.entries(bankDetails).map(([key, value]) => (
-                  <div class="flex justify-between items-center py-3 border-b border-golden-100 last:border-0">
-                    <span class="text-earth-600 capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}</span>
-                    <span class="font-medium text-earth-900">{value}</span>
+                  <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 sm:py-3 border-b border-golden-100 last:border-0 gap-1 sm:gap-0">
+                    <span class="text-earth-600 capitalize text-sm sm:text-base">{key.replace(/([A-Z])/g, ' $1').trim()}</span>
+                    <span class="font-medium text-earth-900 text-sm sm:text-base">{value}</span>
                   </div>
                 ))}
               </div>
-              <div class="mt-6 p-4 bg-golden-100 rounded-lg">
-                <p class="text-sm text-golden-800"><strong>Note:</strong> Email transaction details to <a href="mailto:contact@dokkaseethamma.org" class="underline">contact@dokkaseethamma.org</a></p>
+              <div class="mt-4 sm:mt-6 p-3 sm:p-4 bg-golden-100 rounded-lg">
+                <p class="text-xs sm:text-sm text-golden-800"><strong>Note:</strong> Email transaction details to <a href="mailto:contact@dokkaseethamma.org" class="underline">contact@dokkaseethamma.org</a></p>
               </div>
             </CardContent>
           </Card>

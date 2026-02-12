@@ -47,9 +47,9 @@ const currentPath = Astro.url.pathname;
         ))}
         
         <!-- Theme Toggle Button -->
-        <button 
+        <button
           data-theme-toggle
-          class="p-2 rounded-lg text-earth-600 dark:text-gray-300 hover:text-golden-700 dark:hover:text-golden-400 hover:bg-golden-100 dark:hover:bg-gray-800 transition-colors"
+          class="min-h-[44px] min-w-[44px] p-2 rounded-lg text-earth-600 dark:text-gray-300 hover:text-golden-700 dark:hover:text-golden-400 hover:bg-golden-100 dark:hover:bg-gray-800 transition-colors flex items-center justify-center"
           aria-label="Toggle theme"
         >
           <Sun data-sun-icon className="w-5 h-5 hidden" />
@@ -65,17 +65,17 @@ const currentPath = Astro.url.pathname;
       </div>
 
       <!-- Mobile Menu Button -->
-      <div class="lg:hidden flex items-center gap-2">
+      <div class="lg:hidden flex items-center gap-1">
         <!-- Theme Toggle Button (Mobile) -->
-        <button 
+        <button
           data-theme-toggle
-          class="p-2 rounded-lg text-earth-600 dark:text-gray-300 hover:text-golden-700 dark:hover:text-golden-400 hover:bg-golden-100 dark:hover:bg-gray-800 transition-colors"
+          class="min-h-[44px] min-w-[44px] p-2.5 rounded-lg text-earth-600 dark:text-gray-300 hover:text-golden-700 dark:hover:text-golden-400 hover:bg-golden-100 dark:hover:bg-gray-800 transition-colors flex items-center justify-center"
           aria-label="Toggle theme"
         >
           <Sun data-sun-icon className="w-5 h-5 hidden" />
           <Moon data-moon-icon className="w-5 h-5" />
         </button>
-        <button id="mobile-menu-btn" class="p-2 rounded-lg text-earth-600 dark:text-gray-300 hover:text-golden-700 dark:hover:text-golden-400 hover:bg-golden-100 dark:hover:bg-gray-800 transition-colors">
+        <button id="mobile-menu-btn" class="min-h-[44px] min-w-[44px] p-2.5 rounded-lg text-earth-600 dark:text-gray-300 hover:text-golden-700 dark:hover:text-golden-400 hover:bg-golden-100 dark:hover:bg-gray-800 transition-colors flex items-center justify-center">
           <Menu className="w-6 h-6" />
         </button>
       </div>
@@ -83,12 +83,12 @@ const currentPath = Astro.url.pathname;
 
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="lg:hidden hidden bg-cream-50 dark:bg-gray-900 border-t border-golden-200/50 dark:border-gray-700/50 pb-4">
-      <div class="flex flex-col gap-2 pt-4">
+      <div class="flex flex-col gap-1 pt-4">
         {navLinks.map(link => (
           <a
             href={link.href}
             class:list={[
-              'px-4 py-3 text-base font-medium rounded-lg transition-colors',
+              'min-h-[44px] px-4 py-3 text-base font-medium rounded-lg transition-colors flex items-center',
               currentPath === link.href
                 ? 'text-golden-700 dark:text-golden-400 bg-golden-100 dark:bg-gray-800'
                 : 'text-earth-600 dark:text-gray-300 hover:text-golden-700 dark:hover:text-golden-400 hover:bg-golden-50 dark:hover:bg-gray-800'
@@ -97,8 +97,8 @@ const currentPath = Astro.url.pathname;
             {link.label}
           </a>
         ))}
-        <a href="/donate" class="px-4 mt-2">
-          <Button className="w-full bg-gradient-to-r from-golden-500 to-golden-600 hover:from-golden-600 hover:to-golden-700 text-white rounded-full">
+        <a href="/donate" class="px-4 mt-3">
+          <Button className="w-full min-h-[44px] bg-gradient-to-r from-golden-500 to-golden-600 hover:from-golden-600 hover:to-golden-700 text-white rounded-full">
             <Heart className="w-4 h-4 mr-2" />
             Donate Now
           </Button>

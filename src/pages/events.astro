@@ -36,7 +36,7 @@ const formatDate = (dateString: string) => {
   <section class="relative pt-32 pb-16 lg:pb-24 bg-gradient-to-b from-golden-50 to-cream-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <Badge variant="outline" className="mb-4 text-golden-700 border-golden-300">Events</Badge>
-      <h1 class="text-4xl lg:text-5xl font-bold text-earth-900 mb-6">Upcoming <span class="text-golden-600">Events</span></h1>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-earth-900 mb-4 sm:mb-6">Upcoming <span class="text-golden-600">Events</span></h1>
     </div>
   </section>
 
@@ -50,29 +50,29 @@ const formatDate = (dateString: string) => {
         </div>
 
         <div class="tab-content" data-content="upcoming">
-          <div class="grid md:grid-cols-2 gap-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
             {upcomingEvents.map((event) => {
               const date = formatDate(event.date);
               return (
                 <Card className="group overflow-hidden hover:shadow-xl transition-all">
                   <div class="aspect-video overflow-hidden">
-                    <img src={event.image} alt={event.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+                    <img src={event.image} alt={event.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform max-w-full" />
                   </div>
-                  <CardContent className="p-6">
-                    <div class="flex items-center gap-4 mb-4">
-                      <div class="bg-golden-100 rounded-lg p-3 text-center min-w-[60px]">
-                        <div class="text-2xl font-bold text-golden-600">{date.day}</div>
+                  <CardContent className="p-4 sm:p-6">
+                    <div class="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
+                      <div class="bg-golden-100 rounded-lg p-2 sm:p-3 text-center min-w-[50px] sm:min-w-[60px]">
+                        <div class="text-xl sm:text-2xl font-bold text-golden-600">{date.day}</div>
                         <div class="text-xs font-medium text-earth-600 uppercase">{date.month}</div>
                       </div>
-                      <Badge className="bg-green-100 text-green-700 hover:bg-green-100">Upcoming</Badge>
+                      <Badge className="bg-green-100 text-green-700 hover:bg-green-100 text-xs sm:text-sm">Upcoming</Badge>
                     </div>
-                    <h3 class="text-xl font-bold text-earth-900 mb-2">{event.title}</h3>
-                    <p class="text-earth-600 text-sm mb-4">{event.description}</p>
-                    <div class="space-y-2 text-sm text-earth-500 mb-4">
-                      <div class="flex items-center gap-2"><Clock className="w-4 h-4 text-golden-500" /><span>{event.time}</span></div>
-                      <div class="flex items-center gap-2"><MapPin className="w-4 h-4 text-golden-500" /><span>{event.location}</span></div>
+                    <h3 class="text-base sm:text-xl font-bold text-earth-900 mb-1 sm:mb-2">{event.title}</h3>
+                    <p class="text-earth-600 text-xs sm:text-sm mb-3 sm:mb-4 line-clamp-2">{event.description}</p>
+                    <div class="space-y-1 sm:space-y-2 text-xs sm:text-sm text-earth-500 mb-3 sm:mb-4">
+                      <div class="flex items-center gap-2"><Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-golden-500 flex-shrink-0" /><span class="truncate">{event.time}</span></div>
+                      <div class="flex items-center gap-2"><MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-golden-500 flex-shrink-0" /><span class="truncate">{event.location}</span></div>
                     </div>
-                    <a href={`/contact?event=${event.id}`}><Button className="w-full bg-golden-500 hover:bg-golden-600">Register Interest</Button></a>
+                    <a href={`/contact?event=${event.id}`}><Button className="w-full min-h-[44px] bg-golden-500 hover:bg-golden-600 text-sm sm:text-base">Register Interest</Button></a>
                   </CardContent>
                 </Card>
               );

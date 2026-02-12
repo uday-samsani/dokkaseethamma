@@ -37,10 +37,10 @@ const milestones = [
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto">
         <Badge variant="outline" className="mb-4 text-golden-700 dark:text-golden-400 border-golden-300 dark:border-golden-500/50">About Us</Badge>
-        <h1 class="text-4xl lg:text-5xl font-bold text-earth-900 dark:text-gray-100 mb-6">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-earth-900 dark:text-gray-100 mb-4 sm:mb-6">
           The Legacy of <span class="text-golden-600 dark:text-golden-400">Dokka Seethamma</span>
         </h1>
-        <p class="text-lg text-earth-600 dark:text-gray-400 leading-relaxed">
+        <p class="text-base sm:text-lg text-earth-600 dark:text-gray-400 leading-relaxed">
           Continuing the golden tradition of selfless service and compassion.
         </p>
       </div>
@@ -52,10 +52,10 @@ const milestones = [
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         <div class="relative">
-          <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-xl">
-            <img src="https://images.unsplash.com/photo-1594708767771-a7502f4ead5d?w=800&q=80" alt="Dokka Seethamma" class="w-full h-full object-cover" />
+          <div class="aspect-[4/3] rounded-xl sm:rounded-2xl overflow-hidden shadow-xl">
+            <img src="https://images.unsplash.com/photo-1594708767771-a7502f4ead5d?w=800&q=80" alt="Dokka Seethamma" class="w-full h-full object-cover max-w-full" />
           </div>
-          <div class="absolute -bottom-6 -right-6 w-48 h-48 bg-golden-100 dark:bg-golden-900/20 rounded-2xl -z-10"></div>
+          <div class="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 w-24 h-24 sm:w-48 sm:h-48 bg-golden-100 dark:bg-golden-900/20 rounded-xl sm:rounded-2xl -z-10"></div>
         </div>
         
         <div>
@@ -119,15 +119,15 @@ const milestones = [
         </h2>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         {values.map((value) => (
           <Card className="text-center hover:shadow-md transition-shadow border-golden-50 dark:border-gray-700 dark:bg-gray-800">
-            <CardContent className="p-6">
-              <div class="w-12 h-12 mx-auto rounded-lg bg-golden-100 dark:bg-golden-900/30 flex items-center justify-center text-golden-600 dark:text-golden-400 mb-4">
-                <value.icon className="w-6 h-6" />
+            <CardContent className="p-4 sm:p-6">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 mx-auto rounded-lg bg-golden-100 dark:bg-golden-900/30 flex items-center justify-center text-golden-600 dark:text-golden-400 mb-3 sm:mb-4">
+                <value.icon className="w-5 h-5 sm:w-6 sm:h-6" />
               </div>
-              <h3 class="text-lg font-bold text-earth-900 dark:text-gray-100 mb-2">{value.title}</h3>
-              <p class="text-earth-600 dark:text-gray-400 text-sm">{value.description}</p>
+              <h3 class="text-sm sm:text-lg font-bold text-earth-900 dark:text-gray-100 mb-1 sm:mb-2">{value.title}</h3>
+              <p class="text-earth-600 dark:text-gray-400 text-xs sm:text-sm">{value.description}</p>
             </CardContent>
           </Card>
         ))}
