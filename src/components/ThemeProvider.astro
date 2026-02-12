@@ -1,0 +1,92 @@
+---
+// ThemeProvider.astro - Handles dark/light mode with localStorage persistence
+---
+
+<script is:inline>
+  // Immediately invoked function to prevent flash of wrong theme
+  (function() {
+    const theme = (() => {
+      // Check localStorage first
+      if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+        return localStorage.getItem('theme');
+      }
+      // Fall back to system preference
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 'dark';
+      }
+      return 'light';
+    })();
+
+    // Apply theme immediately to prevent flash
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  })();
+</script>
+
+<script>
+  // Theme toggle functionality
+  function initTheme() {
+    const themeToggleBtns = document.querySelectorAll('[data-theme-toggle]');
+    
+    function getCurrentTheme() {
+      return document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+    }
+    
+    function setTheme(theme: string) {
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+      localStorage.setItem('theme', theme);
+      updateToggleIcons(theme);
+    }
+    
+    function toggleTheme() {
+      const currentTheme = getCurrentTheme();
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      setTheme(newTheme);
+    }
+    
+    function updateToggleIcons(theme: string) {
+      document.querySelectorAll('[data-theme-toggle]').forEach(btn => {
+        const sunIcon = btn.querySelector('[data-sun-icon]');
+        const moonIcon = btn.querySelector('[data-moon-icon]');
+        if (sunIcon && moonIcon) {
+          if (theme === 'dark') {
+            sunIcon.classList.remove('hidden');
+            moonIcon.classList.add('hidden');
+          } else {
+            sunIcon.classList.add('hidden');
+            moonIcon.classList.remove('hidden');
+          }
+        }
+      });
+    }
+    
+    // Initialize toggle buttons
+    themeToggleBtns.forEach(btn => {
+      btn.addEventListener('click', toggleTheme);
+    });
+    
+    // Set initial icon state
+    updateToggleIcons(getCurrentTheme());
+    
+    // Listen for system theme changes
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+      if (!localStorage.getItem('theme')) {
+        setTheme(e.matches ? 'dark' : 'light');
+      }
+    });
+  }
+
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', initTheme);
+  // Also run immediately in case DOM is already loaded
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    initTheme();
+  }
+</script>

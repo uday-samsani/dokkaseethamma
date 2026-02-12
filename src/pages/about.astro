@@ -33,14 +33,14 @@ const milestones = [
   <Navigation />
 
   <!-- Hero Section -->
-  <section class="relative pt-32 pb-16 lg:pb-24 bg-gradient-to-b from-golden-50 to-cream-50">
+  <section class="relative pt-32 pb-16 lg:pb-24 bg-gradient-to-b from-golden-50 to-cream-50 dark:from-gray-900 dark:to-gray-800 transition-colors">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto">
-        <Badge variant="outline" className="mb-4 text-golden-700 border-golden-300">About Us</Badge>
-        <h1 class="text-4xl lg:text-5xl font-bold text-earth-900 mb-6">
-          The Legacy of <span class="text-golden-600">Dokka Seethamma</span>
+        <Badge variant="outline" className="mb-4 text-golden-700 dark:text-golden-400 border-golden-300 dark:border-golden-500/50">About Us</Badge>
+        <h1 class="text-4xl lg:text-5xl font-bold text-earth-900 dark:text-gray-100 mb-6">
+          The Legacy of <span class="text-golden-600 dark:text-golden-400">Dokka Seethamma</span>
         </h1>
-        <p class="text-lg text-earth-600 leading-relaxed">
+        <p class="text-lg text-earth-600 dark:text-gray-400 leading-relaxed">
           Continuing the golden tradition of selfless service and compassion.
         </p>
       </div>
@@ -48,21 +48,21 @@ const milestones = [
   </section>
 
   <!-- Story Section -->
-  <section class="py-16 lg:py-24 bg-white">
+  <section class="py-16 lg:py-24 bg-white dark:bg-gray-800 transition-colors">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         <div class="relative">
           <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-xl">
             <img src="https://images.unsplash.com/photo-1594708767771-a7502f4ead5d?w=800&q=80" alt="Dokka Seethamma" class="w-full h-full object-cover" />
           </div>
-          <div class="absolute -bottom-6 -right-6 w-48 h-48 bg-golden-100 rounded-2xl -z-10"></div>
+          <div class="absolute -bottom-6 -right-6 w-48 h-48 bg-golden-100 dark:bg-golden-900/20 rounded-2xl -z-10"></div>
         </div>
         
         <div>
-          <h2 class="text-3xl lg:text-4xl font-bold text-earth-900 mb-6">
-            The Golden Lady Who Fed <span class="text-golden-600">Millions</span>
+          <h2 class="text-3xl lg:text-4xl font-bold text-earth-900 dark:text-gray-100 mb-6">
+            The Golden Lady Who Fed <span class="text-golden-600 dark:text-golden-400">Millions</span>
           </h2>
-          <div class="prose prose-lg text-earth-600">
+          <div class="prose prose-lg text-earth-600 dark:text-gray-400">
             <p class="mb-4">
               Dokka Seethamma, affectionately known as the "Golden Lady," was a beacon of hope and compassion. Throughout her life, she dedicated herself to serving food to the hungry.
             </p>
@@ -79,28 +79,28 @@ const milestones = [
   </section>
 
   <!-- Mission & Vision -->
-  <section class="py-16 lg:py-24 bg-cream-50" id="mission">
+  <section class="py-16 lg:py-24 bg-cream-50 dark:bg-gray-900 transition-colors" id="mission">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid md:grid-cols-2 gap-8">
-        <Card className="border-golden-100">
+        <Card className="border-golden-100 dark:border-gray-700 dark:bg-gray-800">
           <CardContent className="p-8">
-            <div class="w-14 h-14 rounded-xl bg-golden-100 flex items-center justify-center text-golden-600 mb-6">
+            <div class="w-14 h-14 rounded-xl bg-golden-100 dark:bg-golden-900/30 flex items-center justify-center text-golden-600 dark:text-golden-400 mb-6">
               <Heart className="w-7 h-7" />
             </div>
-            <h3 class="text-2xl font-bold text-earth-900 mb-4">Our Mission</h3>
-            <p class="text-earth-600 leading-relaxed">
+            <h3 class="text-2xl font-bold text-earth-900 dark:text-gray-100 mb-4">Our Mission</h3>
+            <p class="text-earth-600 dark:text-gray-400 leading-relaxed">
               To eradicate hunger through regular food distribution programs. We are committed to extending services to education support for underprivileged children.
             </p>
           </CardContent>
         </Card>
 
-        <Card className="border-golden-100">
+        <Card className="border-golden-100 dark:border-gray-700 dark:bg-gray-800">
           <CardContent className="p-8">
-            <div class="w-14 h-14 rounded-xl bg-golden-100 flex items-center justify-center text-golden-600 mb-6">
+            <div class="w-14 h-14 rounded-xl bg-golden-100 dark:bg-golden-900/30 flex items-center justify-center text-golden-600 dark:text-golden-400 mb-6">
               <BookOpen className="w-7 h-7" />
             </div>
-            <h3 class="text-2xl font-bold text-earth-900 mb-4">Our Vision</h3>
-            <p class="text-earth-600 leading-relaxed">
+            <h3 class="text-2xl font-bold text-earth-900 dark:text-gray-100 mb-4">Our Vision</h3>
+            <p class="text-earth-600 dark:text-gray-400 leading-relaxed">
               A world where no one goes hungry, and every child has access to quality education. Communities where compassion drives action.
             </p>
           </CardContent>
@@ -110,24 +110,24 @@ const milestones = [
   </section>
 
   <!-- Values -->
-  <section class="py-16 lg:py-24 bg-white">
+  <section class="py-16 lg:py-24 bg-white dark:bg-gray-800 transition-colors">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <Badge variant="outline" className="mb-4 text-golden-700 border-golden-300">Our Values</Badge>
-        <h2 class="text-3xl lg:text-4xl font-bold text-earth-900">
-          Principles That <span class="text-golden-600">Guide Us</span>
+        <Badge variant="outline" className="mb-4 text-golden-700 dark:text-golden-400 border-golden-300 dark:border-golden-500/50">Our Values</Badge>
+        <h2 class="text-3xl lg:text-4xl font-bold text-earth-900 dark:text-gray-100">
+          Principles That <span class="text-golden-600 dark:text-golden-400">Guide Us</span>
         </h2>
       </div>
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {values.map((value) => (
-          <Card className="text-center hover:shadow-md transition-shadow border-golden-50">
+          <Card className="text-center hover:shadow-md transition-shadow border-golden-50 dark:border-gray-700 dark:bg-gray-800">
             <CardContent className="p-6">
-              <div class="w-12 h-12 mx-auto rounded-lg bg-golden-100 flex items-center justify-center text-golden-600 mb-4">
+              <div class="w-12 h-12 mx-auto rounded-lg bg-golden-100 dark:bg-golden-900/30 flex items-center justify-center text-golden-600 dark:text-golden-400 mb-4">
                 <value.icon className="w-6 h-6" />
               </div>
-              <h3 class="text-lg font-bold text-earth-900 mb-2">{value.title}</h3>
-              <p class="text-earth-600 text-sm">{value.description}</p>
+              <h3 class="text-lg font-bold text-earth-900 dark:text-gray-100 mb-2">{value.title}</h3>
+              <p class="text-earth-600 dark:text-gray-400 text-sm">{value.description}</p>
             </CardContent>
           </Card>
         ))}
@@ -136,28 +136,28 @@ const milestones = [
   </section>
 
   <!-- Team Section -->
-  <section class="py-16 lg:py-24 bg-cream-50" id="team">
+  <section class="py-16 lg:py-24 bg-cream-50 dark:bg-gray-900 transition-colors" id="team">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <Badge variant="outline" className="mb-4 text-golden-700 border-golden-300">Our Team</Badge>
-        <h2 class="text-3xl lg:text-4xl font-bold text-earth-900">
-          Meet the <span class="text-golden-600">Trustees</span>
+        <Badge variant="outline" className="mb-4 text-golden-700 dark:text-golden-400 border-golden-300 dark:border-golden-500/50">Our Team</Badge>
+        <h2 class="text-3xl lg:text-4xl font-bold text-earth-900 dark:text-gray-100">
+          Meet the <span class="text-golden-600 dark:text-golden-400">Trustees</span>
         </h2>
-        <p class="text-earth-600 mt-4 max-w-2xl mx-auto">
+        <p class="text-earth-600 dark:text-gray-400 mt-4 max-w-2xl mx-auto">
           Dedicated individuals committed to serving the community.
         </p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-8">
         {teamMembers.map((member) => (
-          <Card className="overflow-hidden hover:shadow-xl transition-all group">
-            <div class="aspect-[4/3] bg-gradient-to-br from-golden-100 to-golden-200 flex items-center justify-center">
+          <Card className="overflow-hidden hover:shadow-xl transition-all group dark:bg-gray-800 dark:border-gray-700">
+            <div class="aspect-[4/3] bg-gradient-to-br from-golden-100 to-golden-200 dark:from-golden-900/30 dark:to-golden-800/30 flex items-center justify-center">
               <Sun className="w-20 h-20 text-golden-400" />
             </div>
             <CardContent className="p-6">
-              <h3 class="text-xl font-bold text-earth-900">{member.name}</h3>
-              <p class="text-golden-600 font-medium mb-3">{member.role}</p>
-              <p class="text-earth-600 text-sm">{member.description}</p>
+              <h3 class="text-xl font-bold text-earth-900 dark:text-gray-100">{member.name}</h3>
+              <p class="text-golden-600 dark:text-golden-400 font-medium mb-3">{member.role}</p>
+              <p class="text-earth-600 dark:text-gray-400 text-sm">{member.description}</p>
             </CardContent>
           </Card>
         ))}
@@ -166,12 +166,12 @@ const milestones = [
   </section>
 
   <!-- Timeline -->
-  <section class="py-16 lg:py-24 bg-white">
+  <section class="py-16 lg:py-24 bg-white dark:bg-gray-800 transition-colors">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <Badge variant="outline" className="mb-4 text-golden-700 border-golden-300">Our Journey</Badge>
-        <h2 class="text-3xl lg:text-4xl font-bold text-earth-900">
-          Milestones & <span class="text-golden-600">Achievements</span>
+        <Badge variant="outline" className="mb-4 text-golden-700 dark:text-golden-400 border-golden-300 dark:border-golden-500/50">Our Journey</Badge>
+        <h2 class="text-3xl lg:text-4xl font-bold text-earth-900 dark:text-gray-100">
+          Milestones & <span class="text-golden-600 dark:text-golden-400">Achievements</span>
         </h2>
       </div>
 
@@ -180,12 +180,12 @@ const milestones = [
           <div class="flex gap-6">
             <div class="flex flex-col items-center">
               <div class="w-4 h-4 rounded-full bg-golden-500"></div>
-              {index < milestones.length - 1 && <div class="w-0.5 flex-1 bg-golden-200 mt-2"></div>}
+              {index < milestones.length - 1 && <div class="w-0.5 flex-1 bg-golden-200 dark:bg-golden-800 mt-2"></div>}
             </div>
             <div class={index < milestones.length - 1 ? "pb-8" : ""}>
-              <Badge className="mb-2 bg-golden-100 text-golden-700 hover:bg-golden-100">{milestone.year}</Badge>
-              <h3 class="text-lg font-bold text-earth-900 mt-1">{milestone.title}</h3>
-              <p class="text-earth-600 mt-2">{milestone.description}</p>
+              <Badge className="mb-2 bg-golden-100 dark:bg-golden-900/30 text-golden-700 dark:text-golden-400 hover:bg-golden-100 dark:hover:bg-golden-900/30">{milestone.year}</Badge>
+              <h3 class="text-lg font-bold text-earth-900 dark:text-gray-100 mt-1">{milestone.title}</h3>
+              <p class="text-earth-600 dark:text-gray-400 mt-2">{milestone.description}</p>
             </div>
           </div>
         ))}

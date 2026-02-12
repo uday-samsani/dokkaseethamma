@@ -1,6 +1,6 @@
 ---
 import { Button } from "@/components/ui/button";
-import { Menu, Heart, Sun } from "lucide-react";
+import { Menu, Heart, Sun, Moon } from "lucide-react";
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -13,7 +13,7 @@ const navLinks = [
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 bg-cream-50/95 backdrop-blur-sm border-b border-golden-200/50">
+<header class="fixed top-0 left-0 right-0 z-50 bg-cream-50/95 dark:bg-gray-900/95 backdrop-blur-sm border-b border-golden-200/50 dark:border-gray-700/50 transition-colors">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <nav class="flex items-center justify-between h-16 lg:h-20">
       <!-- Logo -->
@@ -25,8 +25,8 @@ const currentPath = Astro.url.pathname;
           </svg>
         </div>
         <div class="hidden sm:block">
-          <span class="text-lg lg:text-xl font-bold text-earth-900">Dokka Seethamma</span>
-          <span class="block text-xs text-golden-700 -mt-1">Charitable Trust</span>
+          <span class="text-lg lg:text-xl font-bold text-earth-900 dark:text-gray-100">Dokka Seethamma</span>
+          <span class="block text-xs text-golden-700 dark:text-golden-400 -mt-1">Charitable Trust</span>
         </div>
       </a>
 
@@ -38,13 +38,24 @@ const currentPath = Astro.url.pathname;
             class:list={[
               'text-sm font-medium transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-golden-500 after:transition-transform',
               currentPath === link.href 
-                ? 'text-golden-700 after:scale-x-100' 
-                : 'text-earth-600 hover:text-golden-700 after:scale-x-0 hover:after:scale-x-100'
+                ? 'text-golden-700 dark:text-golden-400 after:scale-x-100' 
+                : 'text-earth-600 dark:text-gray-300 hover:text-golden-700 dark:hover:text-golden-400 after:scale-x-0 hover:after:scale-x-100'
             ]}
           >
             {link.label}
           </a>
         ))}
+        
+        <!-- Theme Toggle Button -->
+        <button 
+          data-theme-toggle
+          class="p-2 rounded-lg text-earth-600 dark:text-gray-300 hover:text-golden-700 dark:hover:text-golden-400 hover:bg-golden-100 dark:hover:bg-gray-800 transition-colors"
+          aria-label="Toggle theme"
+        >
+          <Sun data-sun-icon className="w-5 h-5 hidden" />
+          <Moon data-moon-icon className="w-5 h-5" />
+        </button>
+        
         <a href="/donate">
           <Button className="bg-gradient-to-r from-golden-500 to-golden-600 hover:from-golden-600 hover:to-golden-700 text-white rounded-full px-6">
             <Heart className="w-4 h-4 mr-2" />
@@ -54,15 +65,24 @@ const currentPath = Astro.url.pathname;
       </div>
 
       <!-- Mobile Menu Button -->
-      <div class="lg:hidden">
-        <button id="mobile-menu-btn" class="p-2 rounded-lg text-earth-600 hover:text-golden-700 hover:bg-golden-100 transition-colors">
+      <div class="lg:hidden flex items-center gap-2">
+        <!-- Theme Toggle Button (Mobile) -->
+        <button 
+          data-theme-toggle
+          class="p-2 rounded-lg text-earth-600 dark:text-gray-300 hover:text-golden-700 dark:hover:text-golden-400 hover:bg-golden-100 dark:hover:bg-gray-800 transition-colors"
+          aria-label="Toggle theme"
+        >
+          <Sun data-sun-icon className="w-5 h-5 hidden" />
+          <Moon data-moon-icon className="w-5 h-5" />
+        </button>
+        <button id="mobile-menu-btn" class="p-2 rounded-lg text-earth-600 dark:text-gray-300 hover:text-golden-700 dark:hover:text-golden-400 hover:bg-golden-100 dark:hover:bg-gray-800 transition-colors">
           <Menu className="w-6 h-6" />
         </button>
       </div>
     </nav>
 
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="lg:hidden hidden bg-cream-50 border-t border-golden-200/50 pb-4">
+    <div id="mobile-menu" class="lg:hidden hidden bg-cream-50 dark:bg-gray-900 border-t border-golden-200/50 dark:border-gray-700/50 pb-4">
       <div class="flex flex-col gap-2 pt-4">
         {navLinks.map(link => (
           <a
@@ -70,8 +90,8 @@ const currentPath = Astro.url.pathname;
             class:list={[
               'px-4 py-3 text-base font-medium rounded-lg transition-colors',
               currentPath === link.href
-                ? 'text-golden-700 bg-golden-100'
-                : 'text-earth-600 hover:text-golden-700 hover:bg-golden-50'
+                ? 'text-golden-700 dark:text-golden-400 bg-golden-100 dark:bg-gray-800'
+                : 'text-earth-600 dark:text-gray-300 hover:text-golden-700 dark:hover:text-golden-400 hover:bg-golden-50 dark:hover:bg-gray-800'
             ]}
           >
             {link.label}
