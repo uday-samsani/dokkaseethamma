@@ -4,9 +4,8 @@ import Navigation from '@/components/Navigation.astro';
 import Footer from '@/components/Footer.astro';
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, X, ChevronLeft, ChevronRight } from "lucide-react";
 
 const galleryItems = [
   { src: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?w=1200&q=80', title: 'Community Food Distribution', category: 'events', description: 'Volunteers serving meals' },
@@ -66,29 +65,24 @@ const categories = [
               {galleryItems
                 .filter(item => cat.id === 'all' || item.category === cat.id)
                 .map((item, index) => (
-                  <Dialog key={index}>
-                    <DialogTrigger asChild>
-                      <div class="group relative aspect-[4/3] rounded-xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl transition-all">
-                        <img 
-                          src={item.src} 
-                          alt={item.title} 
-                          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                          loading="lazy"
-                        />
-                        <div class="absolute inset-0 bg-gradient-to-t from-earth-900/80 via-earth-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
-                          <h3 class="text-white font-bold text-lg">{item.title}</h3>
-                          <p class="text-cream-200 text-sm">{item.description}</p>
-                        </div>
-                      </div>
-                    </DialogTrigger>
-                    <DialogContent className="max-w-4xl p-0 bg-transparent border-none">
-                      <img src={item.src} alt={item.title} class="w-full rounded-lg" />
-                      <div class="bg-white p-4 rounded-b-lg">
-                        <h3 class="font-bold text-earth-900">{item.title}</h3>
-                        <p class="text-earth-600 text-sm">{item.description}</p>
-                      </div>
-                    </DialogContent>
-                  </Dialog>
+                  <div 
+                    key={index}
+                    class="gallery-item group relative aspect-[4/3] rounded-xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl transition-all"
+                    data-src={item.src}
+                    data-title={item.title}
+                    data-desc={item.description}
+                  >
+                    <img 
+                      src={item.src} 
+                      alt={item.title} 
+                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      loading="lazy"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-earth-900/80 via-earth-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
+                      <h3 class="text-white font-bold text-lg">{item.title}</h3>
+                      <p class="text-cream-200 text-sm">{item.description}</p>
+                    </div>
+                  </div>
                 ))}
             </div>
           </TabsContent>
@@ -96,6 +90,26 @@ const categories = [
       </Tabs>
     </div>
   </section>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="fixed inset-0 z-50 hidden bg-earth-900/95 backdrop-blur-sm">
+    <button id="lightbox-close" class="absolute top-4 right-4 z-10 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors">
+      <X className="w-6 h-6" />
+    </button>
+    <button id="lightbox-prev" class="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors">
+      <ChevronLeft className="w-6 h-6" />
+    </button>
+    <button id="lightbox-next" class="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors">
+      <ChevronRight className="w-6 h-6" />
+    </button>
+    <div class="relative h-full flex flex-col items-center justify-center p-4 sm:p-8 lg:p-12">
+      <img id="lightbox-img" src="" alt="" class="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl" />
+      <div class="mt-4 text-center">
+        <h3 id="lightbox-title" class="text-white font-bold text-xl"></h3>
+        <p id="lightbox-desc" class="text-cream-300 mt-1"></p>
+      </div>
+    </div>
+  </div>
 
   <!-- CTA -->
   <section class="py-16 lg:py-24 bg-gradient-to-r from-golden-500 to-golden-600">
@@ -122,4 +136,72 @@ const categories = [
   </section>
 
   <Footer />
+
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxTitle = document.getElementById('lightbox-title');
+    const lightboxDesc = document.getElementById('lightbox-desc');
+    let currentIndex = 0;
+    let visibleItems = [];
+
+    function updateVisibleItems() {
+      const activeTab = document.querySelector('[role="tabpanel"]:not([hidden])');
+      if (activeTab) {
+        visibleItems = Array.from(activeTab.querySelectorAll('.gallery-item'));
+      }
+    }
+
+    function openLightbox(index) {
+      currentIndex = index;
+      const item = visibleItems[index];
+      if (item) {
+        lightboxImg.src = item.dataset.src;
+        lightboxTitle.textContent = item.dataset.title;
+        lightboxDesc.textContent = item.dataset.desc;
+        lightbox.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeLightbox() {
+      lightbox.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    function showPrev() {
+      currentIndex = (currentIndex - 1 + visibleItems.length) % visibleItems.length;
+      openLightbox(currentIndex);
+    }
+
+    function showNext() {
+      currentIndex = (currentIndex + 1) % visibleItems.length;
+      openLightbox(currentIndex);
+    }
+
+    // Event delegation for gallery items
+    document.addEventListener('click', (e) => {
+      const item = e.target.closest('.gallery-item');
+      if (item) {
+        updateVisibleItems();
+        const index = visibleItems.indexOf(item);
+        if (index !== -1) openLightbox(index);
+      }
+    });
+
+    document.getElementById('lightbox-close')?.addEventListener('click', closeLightbox);
+    document.getElementById('lightbox-prev')?.addEventListener('click', showPrev);
+    document.getElementById('lightbox-next')?.addEventListener('click', showNext);
+    
+    lightbox?.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (lightbox.classList.contains('hidden')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') showPrev();
+      if (e.key === 'ArrowRight') showNext();
+    });
+  </script>
 </Layout>

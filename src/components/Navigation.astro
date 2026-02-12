@@ -1,6 +1,5 @@
 ---
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { Menu, Heart, Sun } from "lucide-react";
 
 const navLinks = [
@@ -20,7 +19,10 @@ const currentPath = Astro.url.pathname;
       <!-- Logo -->
       <a href="/" class="flex items-center gap-3 group">
         <div class="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-gradient-to-br from-golden-400 to-golden-600 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow">
-          <Sun className="w-6 h-6 lg:w-7 lg:h-7 text-white" />
+          <svg class="w-6 h-6 lg:w-7 lg:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="5" stroke-width="2"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+          </svg>
         </div>
         <div class="hidden sm:block">
           <span class="text-lg lg:text-xl font-bold text-earth-900">Dokka Seethamma</span>
@@ -51,41 +53,45 @@ const currentPath = Astro.url.pathname;
         </a>
       </div>
 
-      <!-- Mobile Menu -->
+      <!-- Mobile Menu Button -->
       <div class="lg:hidden">
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" className="text-earth-600 hover:text-golden-700 hover:bg-golden-100">
-              <Menu className="w-6 h-6" />
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="right" className="w-[300px] bg-cream-50">
-            <div class="flex flex-col gap-6 mt-8">
-              {navLinks.map(link => (
-                <SheetClose asChild>
-                  <a
-                    href={link.href}
-                    class:list={[
-                      'text-lg font-medium transition-colors',
-                      currentPath === link.href
-                        ? 'text-golden-700'
-                        : 'text-earth-600 hover:text-golden-700'
-                    ]}
-                  >
-                    {link.label}
-                  </a>
-                </SheetClose>
-              ))}
-              <a href="/donate" class="mt-4">
-                <Button className="w-full bg-gradient-to-r from-golden-500 to-golden-600 hover:from-golden-600 hover:to-golden-700 text-white rounded-full">
-                  <Heart className="w-4 h-4 mr-2" />
-                  Donate Now
-                </Button>
-              </a>
-            </div>
-          </SheetContent>
-        </Sheet>
+        <button id="mobile-menu-btn" class="p-2 rounded-lg text-earth-600 hover:text-golden-700 hover:bg-golden-100 transition-colors">
+          <Menu className="w-6 h-6" />
+        </button>
       </div>
     </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="lg:hidden hidden bg-cream-50 border-t border-golden-200/50 pb-4">
+      <div class="flex flex-col gap-2 pt-4">
+        {navLinks.map(link => (
+          <a
+            href={link.href}
+            class:list={[
+              'px-4 py-3 text-base font-medium rounded-lg transition-colors',
+              currentPath === link.href
+                ? 'text-golden-700 bg-golden-100'
+                : 'text-earth-600 hover:text-golden-700 hover:bg-golden-50'
+            ]}
+          >
+            {link.label}
+          </a>
+        ))}
+        <a href="/donate" class="px-4 mt-2">
+          <Button className="w-full bg-gradient-to-r from-golden-500 to-golden-600 hover:from-golden-600 hover:to-golden-700 text-white rounded-full">
+            <Heart className="w-4 h-4 mr-2" />
+            Donate Now
+          </Button>
+        </a>
+      </div>
+    </div>
   </div>
 </header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  btn?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+  });
+</script>
