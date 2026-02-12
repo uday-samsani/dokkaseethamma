@@ -1,0 +1,333 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+
+const galleryItems = [
+  {
+    src: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?w=1200&q=80',
+    thumbnail: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?w=400&q=80',
+    title: 'Community Food Distribution',
+    category: 'events',
+    description: 'Volunteers serving meals to community members',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=1200&q=80',
+    thumbnail: 'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=400&q=80',
+    title: 'Volunteers at Work',
+    category: 'volunteers',
+    description: 'Our dedicated volunteers preparing food packages',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1200&q=80',
+    thumbnail: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=400&q=80',
+    title: 'Helping Hands',
+    category: 'beneficiaries',
+    description: 'Reaching out to those in need',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1593113630400-ea4288922497?w=1200&q=80',
+    thumbnail: 'https://images.unsplash.com/photo-1593113630400-ea4288922497?w=400&q=80',
+    title: 'Group Volunteering',
+    category: 'volunteers',
+    description: 'Team of volunteers ready for distribution',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=1200&q=80',
+    thumbnail: 'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=400&q=80',
+    title: 'Community Support',
+    category: 'beneficiaries',
+    description: 'Supporting families in need',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=1200&q=80',
+    thumbnail: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=400&q=80',
+    title: 'Kitchen Preparation',
+    category: 'events',
+    description: 'Preparing nutritious meals in our community kitchen',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1578357078586-491adf1aa5ba?w=1200&q=80',
+    thumbnail: 'https://images.unsplash.com/photo-1578357078586-491adf1aa5ba?w=400&q=80',
+    title: 'Festival Special',
+    category: 'events',
+    description: 'Special meal distribution during festival season',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=1200&q=80',
+    thumbnail: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=400&q=80',
+    title: 'Joy of Giving',
+    category: 'beneficiaries',
+    description: 'Bringing smiles through food and care',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=1200&q=80',
+    thumbnail: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=400&q=80',
+    title: 'Volunteer Training',
+    category: 'volunteers',
+    description: 'Training new volunteers for efficient service',
+  },
+];
+
+const categories = [
+  { id: 'all', label: 'All Photos' },
+  { id: 'events', label: 'Events' },
+  { id: 'volunteers', label: 'Volunteers' },
+  { id: 'beneficiaries', label: 'Beneficiaries' },
+];
+---
+
+<Layout 
+  title="Gallery" 
+  description="Browse through photos of our food distribution events, volunteers in action, and the communities we serve at Dokka Seethamma Charitable Trust."
+>
+  <Navigation />
+
+  <!-- Hero Section -->
+  <section class="relative pt-32 pb-16 lg:pb-24 bg-gradient-to-b from-golden-50 to-cream-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto">
+        <span class="inline-block px-4 py-1.5 rounded-full bg-golden-100 text-golden-700 text-sm font-medium mb-4">
+          Gallery
+        </span>
+        <h1 class="text-4xl lg:text-5xl font-bold text-earth-900 mb-6">
+          Moments of <span class="text-golden-600">Compassion</span>
+        </h1>
+        <p class="text-lg text-earth-600 leading-relaxed">
+          A visual journey through our events, volunteers, and the communities we serve. Each photo tells a story of hope and humanity.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="py-16 lg:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Filter Buttons -->
+      <div class="flex flex-wrap justify-center gap-3 mb-12">
+        {categories.map((category) => (
+          <button
+            type="button"
+            class="gallery-filter px-5 py-2.5 rounded-full text-sm font-medium transition-all"
+            data-category={category.id}
+            class:list={[
+              category.id === 'all' 
+                ? 'bg-golden-500 text-white' 
+                : 'bg-cream-100 text-earth-600 hover:bg-golden-100 hover:text-golden-700'
+            ]}
+          >
+            {category.label}
+          </button>
+        ))}
+      </div>
+
+      <!-- Gallery Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="gallery-grid">
+        {galleryItems.map((item, index) => (
+          <div 
+            class="gallery-item group relative aspect-[4/3] rounded-xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300"
+            data-category={item.category}
+            data-index={index}
+          >
+            <img
+              src={item.thumbnail}
+              alt={item.title}
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-earth-900/80 via-earth-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+              <h3 class="text-white font-bold text-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                {item.title}
+              </h3>
+              <p class="text-cream-200 text-sm transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">
+                {item.description}
+              </p>
+            </div>
+            <div class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
+              </svg>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="fixed inset-0 z-50 hidden">
+    <div class="absolute inset-0 bg-earth-900/95 backdrop-blur-sm" id="lightbox-backdrop"></div>
+    
+    <button 
+      type="button" 
+      id="lightbox-close"
+      class="absolute top-4 right-4 z-10 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+      aria-label="Close lightbox"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+
+    <button 
+      type="button" 
+      id="lightbox-prev"
+      class="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+      aria-label="Previous image"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+      </svg>
+    </button>
+
+    <button 
+      type="button" 
+      id="lightbox-next"
+      class="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+      aria-label="Next image"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+      </svg>
+    </button>
+
+    <div class="relative h-full flex flex-col items-center justify-center p-4 sm:p-8 lg:p-12">
+      <img 
+        id="lightbox-image"
+        src=""
+        alt=""
+        class="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl"
+      />
+      <div class="mt-4 text-center">
+        <h3 id="lightbox-title" class="text-white font-bold text-xl"></h3>
+        <p id="lightbox-description" class="text-cream-300 mt-1"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA Section -->
+  <section class="py-16 lg:py-24 bg-gradient-to-r from-golden-500 to-golden-600">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl lg:text-4xl font-bold text-white mb-6">
+        Be Part of Our Story
+      </h2>
+      <p class="text-golden-100 text-lg mb-8 max-w-2xl mx-auto">
+        Join us at our next event and help us create more moments of joy and compassion.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/events"
+          class="inline-flex items-center justify-center px-8 py-4 rounded-full bg-white text-golden-600 font-semibold text-lg shadow-lg hover:shadow-xl transition-all"
+        >
+          View Events
+        </a>
+        <a
+          href="/contact#volunteer"
+          class="inline-flex items-center justify-center px-8 py-4 rounded-full border-2 border-white text-white font-semibold text-lg hover:bg-white/10 transition-all"
+        >
+          Volunteer With Us
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+
+  <script define:vars={{ galleryItems }}>
+    // Gallery functionality
+    const filterButtons = document.querySelectorAll('.gallery-filter');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightbox-image');
+    const lightboxTitle = document.getElementById('lightbox-title');
+    const lightboxDescription = document.getElementById('lightbox-description');
+    const lightboxClose = document.getElementById('lightbox-close');
+    const lightboxPrev = document.getElementById('lightbox-prev');
+    const lightboxNext = document.getElementById('lightbox-next');
+    const lightboxBackdrop = document.getElementById('lightbox-backdrop');
+    
+    let currentImageIndex = 0;
+    let visibleItems = Array.from(galleryItems);
+
+    // Filter functionality
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const category = button.dataset.category;
+        
+        // Update active button
+        filterButtons.forEach(btn => {
+          btn.classList.remove('bg-golden-500', 'text-white');
+          btn.classList.add('bg-cream-100', 'text-earth-600');
+        });
+        button.classList.remove('bg-cream-100', 'text-earth-600');
+        button.classList.add('bg-golden-500', 'text-white');
+        
+        // Filter items
+        visibleItems = [];
+        galleryItems.forEach((item, index) => {
+          const itemCategory = item.dataset.category;
+          if (category === 'all' || itemCategory === category) {
+            item.style.display = 'block';
+            item.dataset.visibleIndex = visibleItems.length;
+            visibleItems.push(item);
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Lightbox functionality
+    galleryItems.forEach((item) => {
+      item.addEventListener('click', () => {
+        const index = parseInt(item.dataset.index);
+        openLightbox(index);
+      });
+    });
+
+    function openLightbox(index) {
+      currentImageIndex = index;
+      updateLightboxContent();
+      lightbox.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    function updateLightboxContent() {
+      const item = window.galleryItems[currentImageIndex];
+      lightboxImage.src = item.src;
+      lightboxImage.alt = item.title;
+      lightboxTitle.textContent = item.title;
+      lightboxDescription.textContent = item.description;
+    }
+
+    function showPrevImage() {
+      currentImageIndex = (currentImageIndex - 1 + window.galleryItems.length) % window.galleryItems.length;
+      updateLightboxContent();
+    }
+
+    function showNextImage() {
+      currentImageIndex = (currentImageIndex + 1) % window.galleryItems.length;
+      updateLightboxContent();
+    }
+
+    // Event listeners
+    lightboxClose?.addEventListener('click', closeLightbox);
+    lightboxBackdrop?.addEventListener('click', closeLightbox);
+    lightboxPrev?.addEventListener('click', (e) => { e.stopPropagation(); showPrevImage(); });
+    lightboxNext?.addEventListener('click', (e) => { e.stopPropagation(); showNextImage(); });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (lightbox.classList.contains('hidden')) return;
+      
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') showPrevImage();
+      if (e.key === 'ArrowRight') showNextImage();
+    });
+  </script>
+</Layout>

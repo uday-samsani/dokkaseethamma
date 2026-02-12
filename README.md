@@ -1,46 +1,267 @@
-# Astro Starter Kit: Basics
+# Dokka Seethamma Charitable Trust Website
 
-```sh
-npm create astro@latest -- --template basics
+[![Astro](https://img.shields.io/badge/Astro-5.x-orange.svg)](https://astro.build)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.x-blue.svg)](https://tailwindcss.com)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
+A modern, responsive website for Dokka Seethamma Charitable Trust - a non-profit organization dedicated to continuing the legacy of the "Golden Lady" who served food to millions.
+
+![Website Preview](./public/preview.jpg)
+
+## 🌟 Features
+
+- **⚡ Lightning Fast**: Built with Astro for optimal performance and SEO
+- **📱 Fully Responsive**: Mobile-first design that works on all devices
+- **🎨 Golden Theme**: Warm golds, creams, and earthy tones representing the "Golden Lady"
+- **🖼️ Image Gallery**: Interactive gallery with lightbox functionality
+- **📊 Transparency Reports**: Monthly reports on donations and impact
+- **💳 Donation Integration**: Ready for Stripe/Razorpay integration
+- **🔍 SEO Optimized**: Complete meta tags and structured data
+- **♿ Accessible**: WCAG compliant with proper ARIA labels
+
+## 📁 Project Structure
+
 ```
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
 /
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
+├── public/                 # Static assets
+│   └── favicon.svg        # Golden sun logo
+├── src/
+│   ├── components/        # Reusable Astro components
+│   │   ├── Navigation.astro
+│   │   ├── Footer.astro
+│   │   ├── ImpactStats.astro
+│   │   ├── MissionSection.astro
+│   │   ├── DonateCTA.astro
+│   │   └── RecentEvents.astro
+│   ├── layouts/           # Page layouts
+│   │   └── Layout.astro   # Main layout with SEO
+│   ├── pages/             # Route pages
+│   │   ├── index.astro    # Home page
+│   │   ├── about.astro    # About/Story page
+│   │   ├── events.astro   # Events & Reports
+│   │   ├── gallery.astro  # Photo gallery
+│   │   ├── contact.astro  # Contact & Volunteer
+│   │   └── donate.astro   # Donation page
+│   └── styles/
+│       └── global.css     # Global styles
+├── astro.config.mjs       # Astro configuration
+├── tailwind.config.mjs    # Tailwind with custom colors
 └── package.json
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## 🚀 Getting Started
 
-## 🧞 Commands
+### Prerequisites
 
-All commands are run from the root of the project, from a terminal:
+- Node.js 18+ 
+- npm or yarn
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+### Installation
 
-## 👀 Want to learn more?
+1. Clone the repository:
+```bash
+git clone https://github.com/dokkaseethamma/dokkaseethamma.git
+cd dokkaseethamma
+```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Start the development server:
+```bash
+npm run dev
+```
+
+4. Open [http://localhost:4321](http://localhost:4321) in your browser
+
+## 📝 Available Scripts
+
+| Command | Action |
+|---------|--------|
+| `npm run dev` | Start development server |
+| `npm run build` | Build for production |
+| `npm run preview` | Preview production build |
+
+## 🎨 Color Palette
+
+The website uses a warm, golden color scheme representing the "Golden Lady" and nourishment:
+
+- **Golden 500**: `#e89f2a` - Primary accent
+- **Golden 600**: `#d4821f` - Hover states
+- **Cream 50**: `#fdfcfb` - Background
+- **Cream 100**: `#faf8f5` - Card backgrounds
+- **Earth 800**: `#6e6358` - Body text
+- **Earth 900**: `#5a524a` - Headings
+
+## 📄 Pages
+
+### Home (`/`)
+- Hero section with mission statement
+- Impact statistics
+- Mission overview
+- Upcoming events preview
+- Donation CTA
+- Trust indicators
+
+### About (`/about`)
+- Story of Dokka Seethamma
+- Mission & Vision
+- Core values
+- Team/Trustees
+- Journey timeline
+
+### Events (`/events`)
+- Upcoming events with registration
+- Past events archive
+- Monthly transparency reports
+
+### Gallery (`/gallery`)
+- Filterable photo gallery
+- Lightbox viewer
+- Categories: Events, Volunteers, Beneficiaries
+
+### Contact (`/contact`)
+- Contact form
+- Office information
+- Volunteer registration
+- FAQ accordion
+
+### Donate (`/donate`)
+- Donation amount selection
+- Bank transfer details
+- UPI QR code placeholder
+- Impact calculator
+- 80G tax benefit info
+
+## 🔧 Customization
+
+### Adding New Events
+
+Edit `src/pages/events.astro` and add to the `upcomingEvents` or `pastEvents` arrays:
+
+```astro
+{
+  id: 'event-3',
+  title: 'New Event Name',
+  date: '2025-03-15',
+  time: '10:00 AM - 2:00 PM',
+  location: 'Venue, City',
+  image: 'https://images.unsplash.com/...',
+  description: 'Event description',
+  status: 'upcoming',
+}
+```
+
+### Adding Gallery Images
+
+Edit `src/pages/gallery.astro` and add to the `galleryItems` array:
+
+```astro
+{
+  src: 'https://images.unsplash.com/...',
+  thumbnail: 'https://images.unsplash.com/...',
+  title: 'Image Title',
+  category: 'events',
+  description: 'Image description',
+}
+```
+
+### Updating Bank Details
+
+Edit `src/pages/donate.astro` and update the `bankDetails` object with actual account information.
+
+## 🌐 Deployment
+
+### Static Hosting (Recommended)
+
+Build the site for static hosting:
+
+```bash
+npm run build
+```
+
+The `dist/` folder will contain the static files ready for deployment to:
+- Netlify
+- Vercel
+- GitHub Pages
+- Cloudflare Pages
+- Any static hosting
+
+### Netlify Deployment
+
+1. Connect your GitHub repo to Netlify
+2. Build command: `npm run build`
+3. Publish directory: `dist`
+
+### Vercel Deployment
+
+```bash
+npm i -g vercel
+vercel
+```
+
+## 🔗 Integrating Payment Gateway
+
+### Stripe Integration
+
+1. Install Stripe:
+```bash
+npm install @stripe/stripe-js
+```
+
+2. Create a checkout page using Stripe Elements
+3. Add server-side API route for payment processing
+
+### Razorpay Integration (India)
+
+1. Install Razorpay:
+```bash
+npm install razorpay
+```
+
+2. Add Razorpay checkout script
+3. Configure with your API keys
+
+## 📱 SEO Checklist
+
+- [x] Meta tags on all pages
+- [x] Open Graph tags
+- [x] Twitter Cards
+- [x] Structured data (JSON-LD)
+- [x] Semantic HTML
+- [x] Alt text on images
+- [x] Canonical URLs
+- [x] Sitemap (auto-generated)
+
+## 🤝 Contributing
+
+We welcome contributions! Please follow these steps:
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Commit your changes: `git commit -m 'Add amazing feature'`
+4. Push to the branch: `git push origin feature/amazing-feature`
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+## 🙏 Acknowledgments
+
+- Built with [Astro](https://astro.build)
+- Styled with [Tailwind CSS](https://tailwindcss.com)
+- Icons from [Lucide](https://lucide.dev)
+- Images from [Unsplash](https://unsplash.com)
+
+## 📞 Contact
+
+- Website: [https://dokkaseethamma.org](https://dokkaseethamma.org)
+- Email: contact@dokkaseethamma.org
+- Phone: +91 99999 99999
+
+---
+
+Made with ❤️ for Dokka Seethamma Charitable Trust

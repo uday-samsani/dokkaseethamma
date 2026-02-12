@@ -1,0 +1,400 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+
+const donationAmounts = [
+  { amount: 500, label: '₹500', description: 'Feeds 5 people' },
+  { amount: 1000, label: '₹1,000', description: 'Feeds 10 people' },
+  { amount: 2500, label: '₹2,500', description: 'Feeds 25 people' },
+  { amount: 5000, label: '₹5,000', description: 'Feeds 50 people' },
+];
+
+const impactItems = [
+  {
+    amount: '₹100',
+    impact: 'Provides 1 nutritious meal',
+    icon: '🍛',
+  },
+  {
+    amount: '₹500',
+    impact: 'Feeds a family of 5',
+    icon: '👨‍👩‍👧‍👦',
+  },
+  {
+    amount: '₹1,000',
+    impact: 'Supports a community kitchen for a day',
+    icon: '🏠',
+  },
+  {
+    amount: '₹5,000',
+    impact: 'Sponsors a small event',
+    icon: '🎉',
+  },
+];
+
+const bankDetails = {
+  accountName: 'Dokka Seethamma Charitable Trust',
+  accountNumber: 'XXXX XXXX XXXX XXXX',
+  ifsc: 'XXXX0000XXX',
+  bank: 'Bank Name',
+  branch: 'Branch Location',
+};
+---
+
+<Layout 
+  title="Donate" 
+  description="Support Dokka Seethamma Charitable Trust. Your donation helps us serve nutritious meals to the hungry and support education initiatives."
+>
+  <Navigation />
+
+  <!-- Hero Section -->
+  <section class="relative pt-32 pb-16 lg:pb-24 bg-gradient-to-b from-golden-50 to-cream-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto">
+        <span class="inline-block px-4 py-1.5 rounded-full bg-golden-100 text-golden-700 text-sm font-medium mb-4">
+          Support Our Cause
+        </span>
+        <h1 class="text-4xl lg:text-5xl font-bold text-earth-900 mb-6">
+          Your Donation <span class="text-golden-600">Matters</span>
+        </h1>
+        <p class="text-lg text-earth-600 leading-relaxed">
+          Every contribution, no matter how small, helps us continue the legacy of Dokka Seethamma and bring hope to those in need.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Donation Section -->
+  <section class="py-16 lg:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16">
+        <!-- Donation Form -->
+        <div>
+          <h2 class="text-2xl lg:text-3xl font-bold text-earth-900 mb-6">Make a Donation</h2>
+          
+          <!-- Amount Selection -->
+          <div class="grid grid-cols-2 gap-4 mb-6">
+            {donationAmounts.map((item) => (
+              <button
+                type="button"
+                class="donation-amount-btn p-4 rounded-xl border-2 border-cream-200 text-center hover:border-golden-400 hover:bg-golden-50 transition-all"
+                data-amount={item.amount}
+              >
+                <div class="text-2xl font-bold text-earth-900">{item.label}</div>
+                <div class="text-sm text-earth-500 mt-1">{item.description}</div>
+              </button>
+            ))}
+          </div>
+
+          <!-- Custom Amount -->
+          <div class="mb-6">
+            <label class="block text-sm font-medium text-earth-700 mb-2">Or enter custom amount</label>
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-earth-500 font-medium">₹</span>
+              <input
+                type="number"
+                id="custom-amount"
+                name="amount"
+                min="1"
+                placeholder="Enter amount"
+                class="w-full pl-10 pr-4 py-3 rounded-lg border border-cream-300 focus:border-golden-500 focus:ring-2 focus:ring-golden-200 outline-none transition-all bg-cream-50"
+              />
+            </div>
+          </div>
+
+          <!-- Donor Information -->
+          <form class="space-y-4" id="donation-form">
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label for="donor-name" class="block text-sm font-medium text-earth-700 mb-2">Full Name *</label>
+                <input
+                  type="text"
+                  id="donor-name"
+                  name="name"
+                  required
+                  class="w-full px-4 py-3 rounded-lg border border-cream-300 focus:border-golden-500 focus:ring-2 focus:ring-golden-200 outline-none transition-all bg-cream-50"
+                  placeholder="Your name"
+                />
+              </div>
+              <div>
+                <label for="donor-email" class="block text-sm font-medium text-earth-700 mb-2">Email Address *</label>
+                <input
+                  type="email"
+                  id="donor-email"
+                  name="email"
+                  required
+                  class="w-full px-4 py-3 rounded-lg border border-cream-300 focus:border-golden-500 focus:ring-2 focus:ring-golden-200 outline-none transition-all bg-cream-50"
+                  placeholder="your@email.com"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label for="donor-phone" class="block text-sm font-medium text-earth-700 mb-2">Phone Number</label>
+              <input
+                type="tel"
+                id="donor-phone"
+                name="phone"
+                class="w-full px-4 py-3 rounded-lg border border-cream-300 focus:border-golden-500 focus:ring-2 focus:ring-golden-200 outline-none transition-all bg-cream-50"
+                placeholder="+91 99999 99999"
+              />
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-earth-700 mb-2">Donation Type</label>
+              <div class="flex gap-4">
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="radio" name="donation_type" value="one-time" checked class="text-golden-500 focus:ring-golden-500" />
+                  <span class="text-earth-600">One-time</span>
+                </label>
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="radio" name="donation_type" value="monthly" class="text-golden-500 focus:ring-golden-500" />
+                  <span class="text-earth-600">Monthly</span>
+                </label>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-earth-700 mb-2">80G Tax Benefit Required?</label>
+              <div class="flex gap-4">
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="radio" name="tax_benefit" value="yes" checked class="text-golden-500 focus:ring-golden-500" />
+                  <span class="text-earth-600">Yes</span>
+                </label>
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="radio" name="tax_benefit" value="no" class="text-golden-500 focus:ring-golden-500" />
+                  <span class="text-earth-600">No</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="pt-4">
+              <p class="text-sm text-earth-500 mb-4">
+                * Currently accepting donations via bank transfer. Online payment integration coming soon.
+              </p>
+              <button
+                type="submit"
+                class="w-full px-8 py-4 rounded-full bg-gradient-to-r from-golden-500 to-golden-600 text-white font-semibold text-lg shadow-lg hover:shadow-xl hover:from-golden-600 hover:to-golden-700 transition-all transform hover:-translate-y-0.5"
+              >
+                <span class="flex items-center justify-center gap-2">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                  </svg>
+                  Proceed to Donate
+                </span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Bank Transfer Info -->
+        <div>
+          <div class="bg-cream-50 rounded-2xl p-8 mb-8">
+            <h3 class="text-xl font-bold text-earth-900 mb-6 flex items-center gap-2">
+              <svg class="w-6 h-6 text-golden-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+              </svg>
+              Bank Transfer Details
+            </h3>
+            <div class="space-y-4">
+              <div class="flex justify-between items-center py-3 border-b border-golden-200">
+                <span class="text-earth-600">Account Name</span>
+                <span class="font-medium text-earth-900">{bankDetails.accountName}</span>
+              </div>
+              <div class="flex justify-between items-center py-3 border-b border-golden-200">
+                <span class="text-earth-600">Account Number</span>
+                <span class="font-medium text-earth-900">{bankDetails.accountNumber}</span>
+              </div>
+              <div class="flex justify-between items-center py-3 border-b border-golden-200">
+                <span class="text-earth-600">IFSC Code</span>
+                <span class="font-medium text-earth-900">{bankDetails.ifsc}</span>
+              </div>
+              <div class="flex justify-between items-center py-3 border-b border-golden-200">
+                <span class="text-earth-600">Bank</span>
+                <span class="font-medium text-earth-900">{bankDetails.bank}</span>
+              </div>
+              <div class="flex justify-between items-center py-3">
+                <span class="text-earth-600">Branch</span>
+                <span class="font-medium text-earth-900">{bankDetails.branch}</span>
+              </div>
+            </div>
+            <div class="mt-6 p-4 bg-golden-100 rounded-lg">
+              <p class="text-sm text-golden-800">
+                <strong>Note:</strong> After making the transfer, please email the transaction details to <a href="mailto:contact@dokkaseethamma.org" class="underline">contact@dokkaseethamma.org</a> for receipt generation.
+              </p>
+            </div>
+          </div>
+
+          <!-- UPI QR Placeholder -->
+          <div class="bg-white border-2 border-dashed border-cream-300 rounded-2xl p-8 text-center">
+            <div class="w-48 h-48 mx-auto bg-cream-100 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-16 h-16 text-cream-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path>
+              </svg>
+            </div>
+            <h4 class="font-semibold text-earth-900 mb-2">UPI Payment</h4>
+            <p class="text-earth-600 text-sm mb-4">Scan QR code to donate via UPI</p>
+            <p class="text-golden-600 font-medium">dokkaseethamma@upi</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Impact Section -->
+  <section class="py-16 lg:py-24 bg-gradient-to-r from-golden-500 to-golden-600">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl lg:text-4xl font-bold text-white mb-4">
+          Your Impact
+        </h2>
+        <p class="text-golden-100 text-lg max-w-2xl mx-auto">
+          See how your contribution directly helps those in need
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {impactItems.map((item) => (
+          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center border border-white/20">
+            <span class="text-4xl mb-3 block">{item.icon}</span>
+            <div class="text-2xl font-bold text-white mb-1">{item.amount}</div>
+            <div class="text-golden-100 text-sm">{item.impact}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Badges -->
+  <section class="py-16 lg:py-24 bg-cream-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white rounded-2xl p-8 text-center shadow-sm">
+          <div class="w-16 h-16 mx-auto rounded-full bg-green-100 flex items-center justify-center text-green-600 mb-4">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-earth-900 mb-2">80G Certified</h3>
+          <p class="text-earth-600 text-sm">All donations are eligible for tax deduction under Section 80G of the Income Tax Act.</p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-8 text-center shadow-sm">
+          <div class="w-16 h-16 mx-auto rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mb-4">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-earth-900 mb-2">Secure Donation</h3>
+          <p class="text-earth-600 text-sm">Your payment information is secure. We use encrypted connections for all transactions.</p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-8 text-center shadow-sm">
+          <div class="w-16 h-16 mx-auto rounded-full bg-golden-100 flex items-center justify-center text-golden-600 mb-4">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-earth-900 mb-2">Instant Receipt</h3>
+          <p class="text-earth-600 text-sm">Receive your donation receipt via email immediately after your contribution.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Other Ways to Help -->
+  <section class="py-16 lg:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl lg:text-4xl font-bold text-earth-900 mb-4">
+          Other Ways to <span class="text-golden-600">Help</span>
+        </h2>
+        <p class="text-earth-600 text-lg max-w-2xl mx-auto">
+          Can't donate money? There are other ways to support our cause.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="w-20 h-20 mx-auto rounded-full bg-golden-100 flex items-center justify-center text-golden-600 mb-4">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-earth-900 mb-2">Volunteer</h3>
+          <p class="text-earth-600 mb-4">Give your time and skills to help at our events and operations.</p>
+          <a href="/contact#volunteer" class="text-golden-600 font-medium hover:text-golden-700">Join as Volunteer →</a>
+        </div>
+
+        <div class="text-center">
+          <div class="w-20 h-20 mx-auto rounded-full bg-golden-100 flex items-center justify-center text-golden-600 mb-4">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-earth-900 mb-2">Spread the Word</h3>
+          <p class="text-earth-600 mb-4">Share our mission with friends and family on social media.</p>
+          <a href="/contact" class="text-golden-600 font-medium hover:text-golden-700">Get Materials →</a>
+        </div>
+
+        <div class="text-center">
+          <div class="w-20 h-20 mx-auto rounded-full bg-golden-100 flex items-center justify-center text-golden-600 mb-4">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-earth-900 mb-2">In-Kind Donations</h3>
+          <p class="text-earth-600 mb-4">Donate food supplies, cooking equipment, or other essentials.</p>
+          <a href="/contact" class="text-golden-600 font-medium hover:text-golden-700">Contact Us →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+
+  <script>
+    // Donation amount selection
+    const amountBtns = document.querySelectorAll('.donation-amount-btn');
+    const customAmountInput = document.getElementById('custom-amount');
+    const donationForm = document.getElementById('donation-form');
+
+    amountBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Remove active state from all buttons
+        amountBtns.forEach(b => {
+          b.classList.remove('border-golden-500', 'bg-golden-50');
+          b.classList.add('border-cream-200');
+        });
+        // Add active state to clicked button
+        btn.classList.remove('border-cream-200');
+        btn.classList.add('border-golden-500', 'bg-golden-50');
+        // Set custom amount input
+        if (customAmountInput) {
+          customAmountInput.value = btn.dataset.amount;
+        }
+      });
+    });
+
+    // Clear custom amount when typing
+    customAmountInput?.addEventListener('focus', () => {
+      amountBtns.forEach(b => {
+        b.classList.remove('border-golden-500', 'bg-golden-50');
+        b.classList.add('border-cream-200');
+      });
+    });
+
+    // Form submission
+    donationForm?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const amount = customAmountInput?.value;
+      if (!amount || parseInt(amount) < 1) {
+        alert('Please enter a valid donation amount');
+        return;
+      }
+      // Show bank transfer instructions
+      alert('Thank you for your generosity! Please use the bank details on the right to complete your donation. Email us the transaction receipt for your 80G certificate.');
+    });
+  </script>
+</Layout>
