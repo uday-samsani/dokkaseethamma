@@ -1,4 +1,6 @@
 ---
+import '@/styles/global.css';
+
 export interface Props {
   title: string;
   description?: string;
@@ -69,7 +71,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://dokkasee
     `}
   </script>
 </head>
-<body class="font-sans text-earth-800 bg-cream-50 antialiased">
+<body class="font-sans antialiased bg-cream-50 text-earth-900">
   <slot />
 </body>
 </html>
