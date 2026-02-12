@@ -35,47 +35,47 @@ const bankDetails = {
 <Layout title="Donate" description="Support Dokka Seethamma Charitable Trust.">
   <Navigation />
 
-  <section class="relative pt-32 pb-16 lg:pb-24 bg-gradient-to-b from-golden-50 to-cream-50">
+  <section class="relative pt-32 pb-16 lg:pb-24 bg-gradient-to-b from-golden-50 to-cream-50 dark:from-gray-900 dark:to-gray-800 transition-colors">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <Badge variant="outline" className="mb-4 text-golden-700 border-golden-300">Support Our Cause</Badge>
-      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-earth-900 mb-4 sm:mb-6">Your Donation <span class="text-golden-600">Matters</span></h1>
-      <p class="text-base sm:text-lg text-earth-600 max-w-2xl mx-auto px-4 sm:px-0">Every contribution helps us continue the legacy of Dokka Seethamma and bring hope to those in need.</p>
+      <Badge variant="outline" className="mb-4 text-golden-700 dark:text-golden-400 border-golden-300 dark:border-golden-500/50">Support Our Cause</Badge>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-earth-900 dark:text-gray-100 mb-4 sm:mb-6">Your Donation <span class="text-golden-600 dark:text-golden-400">Matters</span></h1>
+      <p class="text-base sm:text-lg text-earth-600 dark:text-gray-400 max-w-2xl mx-auto px-4 sm:px-0">Every contribution helps us continue the legacy of Dokka Seethamma and bring hope to those in need.</p>
     </div>
   </section>
 
-  <section class="py-16 lg:py-24 bg-white">
+  <section class="py-16 lg:py-24 bg-white dark:bg-gray-800 transition-colors">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-16">
         <!-- Donation Form -->
         <div>
-          <h2 class="text-2xl lg:text-3xl font-bold text-earth-900 mb-6">Make a Donation</h2>
-          
+          <h2 class="text-2xl lg:text-3xl font-bold text-earth-900 dark:text-gray-100 mb-6">Make a Donation</h2>
+
           <div class="grid grid-cols-2 gap-3 sm:gap-4 mb-6">
             {donationAmounts.map((item) => (
-              <button type="button" class="donation-amount-btn min-h-[80px] sm:min-h-[100px] p-3 sm:p-4 rounded-xl border-2 border-cream-200 text-center hover:border-golden-400 hover:bg-golden-50 transition-all data-[selected=true]:border-golden-500 data-[selected=true]:bg-golden-50" data-amount={item.amount} data-selected="false">
-                <div class="text-xl sm:text-2xl font-bold text-earth-900">{item.label}</div>
-                <div class="text-xs sm:text-sm text-earth-500 mt-1">{item.description}</div>
+              <button type="button" class="donation-amount-btn min-h-[80px] sm:min-h-[100px] p-3 sm:p-4 rounded-xl border-2 border-cream-200 dark:border-gray-600 text-center hover:border-golden-400 hover:bg-golden-50 dark:hover:bg-golden-900/20 transition-all data-[selected=true]:border-golden-500 data-[selected=true]:bg-golden-50 dark:data-[selected=true]:bg-golden-900/20" data-amount={item.amount} data-selected="false">
+                <div class="text-xl sm:text-2xl font-bold text-earth-900 dark:text-gray-100">{item.label}</div>
+                <div class="text-xs sm:text-sm text-earth-500 dark:text-gray-400 mt-1">{item.description}</div>
               </button>
             ))}
           </div>
 
           <div class="mb-6">
-            <Label className="mb-2">Or enter custom amount</Label>
+            <Label className="mb-2 dark:text-gray-300">Or enter custom amount</Label>
             <div class="relative">
-              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-earth-500 font-medium">₹</span>
-              <Input id="custom-amount" type="number" min="1" placeholder="Enter amount" className="pl-10" />
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-earth-500 dark:text-gray-400 font-medium">₹</span>
+              <Input id="custom-amount" type="number" min="1" placeholder="Enter amount" className="pl-10 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100" />
             </div>
           </div>
 
           <form class="space-y-4" id="donation-form">
             <div class="grid sm:grid-cols-2 gap-4">
-              <div class="space-y-2"><Label for="donor-name">Full Name *</Label><Input id="donor-name" name="name" required /></div>
-              <div class="space-y-2"><Label for="donor-email">Email *</Label><Input id="donor-email" name="email" type="email" required /></div>
+              <div class="space-y-2"><Label for="donor-name" className="dark:text-gray-300">Full Name *</Label><Input id="donor-name" name="name" required className="dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100" /></div>
+              <div class="space-y-2"><Label for="donor-email" className="dark:text-gray-300">Email *</Label><Input id="donor-email" name="email" type="email" required className="dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100" /></div>
             </div>
-            <div class="space-y-2"><Label for="donor-phone">Phone</Label><Input id="donor-phone" name="phone" type="tel" /></div>
+            <div class="space-y-2"><Label for="donor-phone" className="dark:text-gray-300">Phone</Label><Input id="donor-phone" name="phone" type="tel" className="dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100" /></div>
             <div class="pt-4">
-              <p class="text-sm text-earth-500 mb-4">* Currently accepting donations via bank transfer.</p>
-              <Button type="submit" className="w-full bg-gradient-to-r from-golden-500 to-golden-600 hover:from-golden-600 hover:to-golden-700 text-white rounded-full">
+              <p class="text-sm text-earth-500 dark:text-gray-400 mb-4">* Currently accepting donations via bank transfer.</p>
+              <Button type="submit" className="w-full min-h-[44px] bg-gradient-to-r from-golden-500 to-golden-600 hover:from-golden-600 hover:to-golden-700 text-white rounded-full">
                 <Heart className="w-5 h-5 mr-2" />Proceed to Donate
               </Button>
             </div>
@@ -84,32 +84,32 @@ const bankDetails = {
 
         <!-- Bank Details -->
         <div>
-          <Card className="mb-6 sm:mb-8 border-golden-100">
+          <Card className="mb-6 sm:mb-8 border-golden-100 dark:border-gray-700 dark:bg-gray-800">
             <CardContent className="p-4 sm:p-8">
-              <h3 class="text-lg sm:text-xl font-bold text-earth-900 mb-4 sm:mb-6 flex items-center gap-2">
+              <h3 class="text-lg sm:text-xl font-bold text-earth-900 dark:text-gray-100 mb-4 sm:mb-6 flex items-center gap-2">
                 <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-golden-600 flex-shrink-0" />Bank Transfer Details
               </h3>
               <div class="space-y-3 sm:space-y-4">
                 {Object.entries(bankDetails).map(([key, value]) => (
-                  <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 sm:py-3 border-b border-golden-100 last:border-0 gap-1 sm:gap-0">
-                    <span class="text-earth-600 capitalize text-sm sm:text-base">{key.replace(/([A-Z])/g, ' $1').trim()}</span>
-                    <span class="font-medium text-earth-900 text-sm sm:text-base">{value}</span>
+                  <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 sm:py-3 border-b border-golden-100 dark:border-gray-700 last:border-0 gap-1 sm:gap-0">
+                    <span class="text-earth-600 dark:text-gray-400 capitalize text-sm sm:text-base">{key.replace(/([A-Z])/g, ' $1').trim()}</span>
+                    <span class="font-medium text-earth-900 dark:text-gray-100 text-sm sm:text-base">{value}</span>
                   </div>
                 ))}
               </div>
-              <div class="mt-4 sm:mt-6 p-3 sm:p-4 bg-golden-100 rounded-lg">
-                <p class="text-xs sm:text-sm text-golden-800"><strong>Note:</strong> Email transaction details to <a href="mailto:contact@dokkaseethamma.org" class="underline">contact@dokkaseethamma.org</a></p>
+              <div class="mt-4 sm:mt-6 p-3 sm:p-4 bg-golden-100 dark:bg-golden-900/30 rounded-lg">
+                <p class="text-xs sm:text-sm text-golden-800 dark:text-golden-200"><strong>Note:</strong> Email transaction details to <a href="mailto:contact@dokkaseethamma.org" class="underline">contact@dokkaseethamma.org</a></p>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="border-dashed border-2 border-cream-300">
+          <Card className="border-dashed border-2 border-cream-300 dark:border-gray-600 dark:bg-gray-800">
             <CardContent className="p-8 text-center">
-              <div class="w-48 h-48 mx-auto bg-cream-100 rounded-lg flex items-center justify-center mb-4">
-                <CheckCircle className="w-16 h-16 text-cream-400" />
+              <div class="w-48 h-48 mx-auto bg-cream-100 dark:bg-gray-700 rounded-lg flex items-center justify-center mb-4">
+                <CheckCircle className="w-16 h-16 text-cream-400 dark:text-gray-500" />
               </div>
-              <h4 class="font-semibold text-earth-900 mb-2">UPI Payment</h4>
-              <p class="text-golden-600 font-medium">dokkaseethamma@upi</p>
+              <h4 class="font-semibold text-earth-900 dark:text-gray-100 mb-2">UPI Payment</h4>
+              <p class="text-golden-600 dark:text-golden-400 font-medium">dokkaseethamma@upi</p>
             </CardContent>
           </Card>
         </div>
@@ -137,31 +137,31 @@ const bankDetails = {
     </div>
   </section>
 
-  <section class="py-16 lg:py-24 bg-cream-50">
+  <section class="py-16 lg:py-24 bg-cream-50 dark:bg-gray-900 transition-colors">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <h2 class="text-3xl lg:text-4xl font-bold text-earth-900 mb-4">Other Ways to <span class="text-golden-600">Help</span></h2>
+        <h2 class="text-3xl lg:text-4xl font-bold text-earth-900 dark:text-gray-100 mb-4">Other Ways to <span class="text-golden-600 dark:text-golden-400">Help</span></h2>
       </div>
       <div class="grid md:grid-cols-3 gap-8">
-        <Card className="text-center">
+        <Card className="text-center dark:bg-gray-800 dark:border-gray-700">
           <CardContent className="p-8">
-            <div class="w-20 h-20 mx-auto rounded-full bg-golden-100 flex items-center justify-center text-golden-600 mb-4"><Users className="w-10 h-10" /></div>
-            <h3 class="text-xl font-bold text-earth-900 mb-2">Volunteer</h3>
-            <a href="/contact#volunteer" class="text-golden-600 font-medium">Join as Volunteer →</a>
+            <div class="w-20 h-20 mx-auto rounded-full bg-golden-100 dark:bg-golden-900/30 flex items-center justify-center text-golden-600 dark:text-golden-400 mb-4"><Users className="w-10 h-10" /></div>
+            <h3 class="text-xl font-bold text-earth-900 dark:text-gray-100 mb-2">Volunteer</h3>
+            <a href="/contact#volunteer" class="text-golden-600 dark:text-golden-400 font-medium">Join as Volunteer →</a>
           </CardContent>
         </Card>
-        <Card className="text-center">
+        <Card className="text-center dark:bg-gray-800 dark:border-gray-700">
           <CardContent className="p-8">
-            <div class="w-20 h-20 mx-auto rounded-full bg-golden-100 flex items-center justify-center text-golden-600 mb-4"><Heart className="w-10 h-10" /></div>
-            <h3 class="text-xl font-bold text-earth-900 mb-2">Spread the Word</h3>
-            <a href="/contact" class="text-golden-600 font-medium">Get Materials →</a>
+            <div class="w-20 h-20 mx-auto rounded-full bg-golden-100 dark:bg-golden-900/30 flex items-center justify-center text-golden-600 dark:text-golden-400 mb-4"><Heart className="w-10 h-10" /></div>
+            <h3 class="text-xl font-bold text-earth-900 dark:text-gray-100 mb-2">Spread the Word</h3>
+            <a href="/contact" class="text-golden-600 dark:text-golden-400 font-medium">Get Materials →</a>
           </CardContent>
         </Card>
-        <Card className="text-center">
+        <Card className="text-center dark:bg-gray-800 dark:border-gray-700">
           <CardContent className="p-8">
-            <div class="w-20 h-20 mx-auto rounded-full bg-golden-100 flex items-center justify-center text-golden-600 mb-4"><BookOpen className="w-10 h-10" /></div>
-            <h3 class="text-xl font-bold text-earth-900 mb-2">In-Kind Donations</h3>
-            <a href="/contact" class="text-golden-600 font-medium">Contact Us →</a>
+            <div class="w-20 h-20 mx-auto rounded-full bg-golden-100 dark:bg-golden-900/30 flex items-center justify-center text-golden-600 dark:text-golden-400 mb-4"><BookOpen className="w-10 h-10" /></div>
+            <h3 class="text-xl font-bold text-earth-900 dark:text-gray-100 mb-2">In-Kind Donations</h3>
+            <a href="/contact" class="text-golden-600 dark:text-golden-400 font-medium">Contact Us →</a>
           </CardContent>
         </Card>
       </div>

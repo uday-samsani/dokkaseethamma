@@ -29,14 +29,14 @@ const contactInfo = [
   <Navigation />
 
   <!-- Hero -->
-  <section class="relative pt-32 pb-16 lg:pb-24 bg-gradient-to-b from-golden-50 to-cream-50">
+  <section class="relative pt-32 pb-16 lg:pb-24 bg-gradient-to-b from-golden-50 to-cream-50 dark:from-gray-900 dark:to-gray-800 transition-colors">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto">
-        <Badge variant="outline" className="mb-4 text-golden-700 border-golden-300">Contact Us</Badge>
-        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-earth-900 mb-4 sm:mb-6">
-          Get in <span class="text-golden-600">Touch</span>
+        <Badge variant="outline" className="mb-4 text-golden-700 dark:text-golden-400 border-golden-300 dark:border-golden-500/50">Contact Us</Badge>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-earth-900 dark:text-gray-100 mb-4 sm:mb-6">
+          Get in <span class="text-golden-600 dark:text-golden-400">Touch</span>
         </h1>
-        <p class="text-base sm:text-lg text-earth-600 leading-relaxed">
+        <p class="text-base sm:text-lg text-earth-600 dark:text-gray-400 leading-relaxed">
           Have questions or want to get involved? We'd love to hear from you.
         </p>
       </div>
@@ -44,32 +44,32 @@ const contactInfo = [
   </section>
 
   <!-- Contact Section -->
-  <section class="py-16 lg:py-24 bg-white">
+  <section class="py-16 lg:py-24 bg-white dark:bg-gray-800 transition-colors">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-16">
         <!-- Contact Form -->
         <div>
-          <h2 class="text-2xl lg:text-3xl font-bold text-earth-900 mb-6">Send us a Message</h2>
+          <h2 class="text-2xl lg:text-3xl font-bold text-earth-900 dark:text-gray-100 mb-6">Send us a Message</h2>
           <form class="space-y-6" action="/contact" method="POST">
             <div class="grid sm:grid-cols-2 gap-4">
               <div class="space-y-2">
-                <Label for="name">Full Name *</Label>
-                <Input id="name" name="name" required placeholder="Your name" />
+                <Label for="name" className="dark:text-gray-300">Full Name *</Label>
+                <Input id="name" name="name" required placeholder="Your name" className="dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100" />
               </div>
               <div class="space-y-2">
-                <Label for="email">Email Address *</Label>
-                <Input id="email" name="email" type="email" required placeholder="your@email.com" />
+                <Label for="email" className="dark:text-gray-300">Email Address *</Label>
+                <Input id="email" name="email" type="email" required placeholder="your@email.com" className="dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100" />
               </div>
             </div>
-            
+
             <div class="space-y-2">
-              <Label for="phone">Phone Number</Label>
-              <Input id="phone" name="phone" type="tel" placeholder="+91 98765 43210" />
+              <Label for="phone" className="dark:text-gray-300">Phone Number</Label>
+              <Input id="phone" name="phone" type="tel" placeholder="+91 98765 43210" className="dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100" />
             </div>
-            
+
             <div class="space-y-2">
-              <Label for="subject">Subject *</Label>
-              <select id="subject" name="subject" required class="w-full px-3 py-2 rounded-lg border border-cream-300 bg-cream-50 focus:border-golden-500 focus:ring-2 focus:ring-golden-200 outline-none">
+              <Label for="subject" className="dark:text-gray-300">Subject *</Label>
+              <select id="subject" name="subject" required class="w-full px-3 py-2 rounded-lg border border-cream-300 dark:border-gray-600 bg-cream-50 dark:bg-gray-700 focus:border-golden-500 focus:ring-2 focus:ring-golden-200 outline-none dark:text-gray-100">
                 <option value="">Select a subject</option>
                 <option value="donation">Donation Inquiry</option>
                 <option value="volunteer">Volunteering</option>
@@ -77,13 +77,13 @@ const contactInfo = [
                 <option value="general">General Inquiry</option>
               </select>
             </div>
-            
+
             <div class="space-y-2">
-              <Label for="message">Message *</Label>
-              <Textarea id="message" name="message" rows="5" required placeholder="How can we help you?" />
+              <Label for="message" className="dark:text-gray-300">Message *</Label>
+              <Textarea id="message" name="message" rows="5" required placeholder="How can we help you?" className="dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100" />
             </div>
-            
-            <Button type="submit" className="w-full bg-gradient-to-r from-golden-500 to-golden-600 hover:from-golden-600 hover:to-golden-700 text-white rounded-full">
+
+            <Button type="submit" className="w-full min-h-[44px] bg-gradient-to-r from-golden-500 to-golden-600 hover:from-golden-600 hover:to-golden-700 text-white rounded-full">
               Send Message
             </Button>
           </form>
@@ -91,23 +91,23 @@ const contactInfo = [
 
         <!-- Contact Info -->
         <div class="lg:pl-8">
-          <h2 class="text-2xl lg:text-3xl font-bold text-earth-900 mb-6">Contact Information</h2>
-          
+          <h2 class="text-2xl lg:text-3xl font-bold text-earth-900 dark:text-gray-100 mb-6">Contact Information</h2>
+
           <div class="space-y-4">
             {contactInfo.map((info) => (
-              <Card key={info.label} className="border-golden-50">
+              <Card key={info.label} className="border-golden-50 dark:border-gray-700 dark:bg-gray-800">
                 <CardContent className="p-4 flex items-start gap-4">
-                  <div class="w-10 h-10 rounded-lg bg-golden-100 flex items-center justify-center text-golden-600 flex-shrink-0">
+                  <div class="w-10 h-10 rounded-lg bg-golden-100 dark:bg-golden-900/30 flex items-center justify-center text-golden-600 dark:text-golden-400 flex-shrink-0">
                     <info.icon className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 class="font-medium text-earth-900">{info.label}</h3>
+                    <h3 class="font-medium text-earth-900 dark:text-gray-100">{info.label}</h3>
                     {info.href ? (
-                      <a href={info.href} class="text-golden-600 hover:text-golden-700 whitespace-pre-line">
+                      <a href={info.href} class="text-golden-600 dark:text-golden-400 hover:text-golden-700 dark:hover:text-golden-300 whitespace-pre-line">
                         {info.value}
                       </a>
                     ) : (
-                      <p class="text-earth-600 whitespace-pre-line text-sm">{info.value}</p>
+                      <p class="text-earth-600 dark:text-gray-400 whitespace-pre-line text-sm">{info.value}</p>
                     )}
                   </div>
                 </CardContent>
@@ -120,30 +120,30 @@ const contactInfo = [
   </section>
 
   <!-- Volunteer Section -->
-  <section class="py-16 lg:py-24 bg-cream-50" id="volunteer">
+  <section class="py-16 lg:py-24 bg-cream-50 dark:bg-gray-900 transition-colors" id="volunteer">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
-          <Badge variant="outline" className="mb-4 text-golden-700 border-golden-300">Volunteer With Us</Badge>
-          <h2 class="text-3xl lg:text-4xl font-bold text-earth-900 mb-6">
-            Join Our Team of <span class="text-golden-600">Change Makers</span>
+          <Badge variant="outline" className="mb-4 text-golden-700 dark:text-golden-400 border-golden-300 dark:border-golden-500/50">Volunteer With Us</Badge>
+          <h2 class="text-3xl lg:text-4xl font-bold text-earth-900 dark:text-gray-100 mb-6">
+            Join Our Team of <span class="text-golden-600 dark:text-golden-400">Change Makers</span>
           </h2>
-          <p class="text-earth-600 text-lg leading-relaxed mb-6">
+          <p class="text-earth-600 dark:text-gray-400 text-lg leading-relaxed mb-6">
             Volunteers are the heart of our organization. Whether you can spare a few hours or want to contribute regularly, we'd love to have you.
           </p>
         </div>
-        
-        <Card>
+
+        <Card className="dark:bg-gray-800 dark:border-gray-700">
           <CardContent className="p-8">
-            <h3 class="text-xl font-bold text-earth-900 mb-6">Volunteer Registration</h3>
+            <h3 class="text-xl font-bold text-earth-900 dark:text-gray-100 mb-6">Volunteer Registration</h3>
             <form class="space-y-4" action="/volunteer" method="POST">
               <div class="grid sm:grid-cols-2 gap-4">
-                <Input name="volunteer_name" required placeholder="Full Name" />
-                <Input name="volunteer_email" type="email" required placeholder="Email Address" />
+                <Input name="volunteer_name" required placeholder="Full Name" className="dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100" />
+                <Input name="volunteer_email" type="email" required placeholder="Email Address" className="dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100" />
               </div>
-              <Input name="volunteer_phone" type="tel" placeholder="Phone Number" />
-              <Textarea name="volunteer_message" rows="3" placeholder="Tell us about yourself" />
-              <Button type="submit" className="w-full bg-gradient-to-r from-golden-500 to-golden-600 hover:from-golden-600 hover:to-golden-700">
+              <Input name="volunteer_phone" type="tel" placeholder="Phone Number" className="dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100" />
+              <Textarea name="volunteer_message" rows="3" placeholder="Tell us about yourself" className="dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100" />
+              <Button type="submit" className="w-full min-h-[44px] bg-gradient-to-r from-golden-500 to-golden-600 hover:from-golden-600 hover:to-golden-700">
                 Register as Volunteer
               </Button>
             </form>
@@ -154,24 +154,24 @@ const contactInfo = [
   </section>
 
   <!-- FAQ Section -->
-  <section class="py-16 lg:py-24 bg-white" id="faq">
+  <section class="py-16 lg:py-24 bg-white dark:bg-gray-800 transition-colors" id="faq">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <Badge variant="outline" className="mb-4 text-golden-700 border-golden-300">FAQ</Badge>
-        <h2 class="text-3xl lg:text-4xl font-bold text-earth-900">
-          Frequently Asked <span class="text-golden-600">Questions</span>
+        <Badge variant="outline" className="mb-4 text-golden-700 dark:text-golden-400 border-golden-300 dark:border-golden-500/50">FAQ</Badge>
+        <h2 class="text-3xl lg:text-4xl font-bold text-earth-900 dark:text-gray-100">
+          Frequently Asked <span class="text-golden-600 dark:text-golden-400">Questions</span>
         </h2>
       </div>
 
       <div class="space-y-4">
         {faqs.map((faq, index) => (
-          <div key={index} class="faq-item border border-golden-100 rounded-xl overflow-hidden">
-            <button class="faq-toggle w-full flex items-center justify-between p-5 text-left bg-cream-50 hover:bg-golden-50 transition-colors">
-              <span class="font-semibold text-earth-900 pr-4">{faq.question}</span>
-              <ChevronDown className="w-5 h-5 text-golden-600 flex-shrink-0 faq-icon transition-transform" />
+          <div key={index} class="faq-item border border-golden-100 dark:border-gray-700 rounded-xl overflow-hidden">
+            <button class="faq-toggle w-full flex items-center justify-between p-5 text-left bg-cream-50 dark:bg-gray-700 hover:bg-golden-50 dark:hover:bg-gray-600 transition-colors">
+              <span class="font-semibold text-earth-900 dark:text-gray-100 pr-4">{faq.question}</span>
+              <ChevronDown className="w-5 h-5 text-golden-600 dark:text-golden-400 flex-shrink-0 faq-icon transition-transform" />
             </button>
-            <div class="faq-content hidden p-5 bg-white border-t border-golden-100">
-              <p class="text-earth-600">{faq.answer}</p>
+            <div class="faq-content hidden p-5 bg-white dark:bg-gray-800 border-t border-golden-100 dark:border-gray-700">
+              <p class="text-earth-600 dark:text-gray-400">{faq.answer}</p>
             </div>
           </div>
         ))}

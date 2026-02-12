@@ -26,20 +26,20 @@ const categories = [
 <Layout title="Gallery" description="Browse photos of our food distribution events and volunteers.">
   <Navigation />
 
-  <section class="relative pt-32 pb-16 lg:pb-24 bg-gradient-to-b from-golden-50 to-cream-50">
+  <section class="relative pt-32 pb-16 lg:pb-24 bg-gradient-to-b from-golden-50 to-cream-50 dark:from-gray-900 dark:to-gray-800 transition-colors">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <Badge variant="outline" className="mb-4 text-golden-700 border-golden-300">Gallery</Badge>
-      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-earth-900 mb-4 sm:mb-6">Moments of <span class="text-golden-600">Compassion</span></h1>
+      <Badge variant="outline" className="mb-4 text-golden-700 dark:text-golden-400 border-golden-300 dark:border-golden-500/50">Gallery</Badge>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-earth-900 dark:text-gray-100 mb-4 sm:mb-6">Moments of <span class="text-golden-600 dark:text-golden-400">Compassion</span></h1>
     </div>
   </section>
 
-  <section class="py-16 lg:py-24 bg-white">
+  <section class="py-16 lg:py-24 bg-white dark:bg-gray-800 transition-colors">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Filter Buttons -->
       <div class="flex flex-wrap justify-center gap-2 mb-8 sm:mb-12">
         {categories.map((cat) => (
           <button
-            class="gallery-filter min-h-[44px] px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border border-cream-200 transition-all data-[active=true]:bg-golden-500 data-[active=true]:text-white data-[active=true]:border-golden-500 text-sm sm:text-base"
+            class="gallery-filter min-h-[44px] px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border border-cream-200 dark:border-gray-600 transition-all data-[active=true]:bg-golden-500 data-[active=true]:text-white data-[active=true]:border-golden-500 text-sm sm:text-base dark:text-gray-300"
             data-category={cat.id}
             data-active={cat.id === 'all' ? 'true' : 'false'}
           >
