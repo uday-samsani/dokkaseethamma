@@ -1,0 +1,292 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+
+const teamMembers = [
+  {
+    name: 'Trustee Name',
+    role: 'Founder & Chairman',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80',
+    description: 'Dedicated to continuing the legacy of Dokka Seethamma through compassionate service.',
+  },
+  {
+    name: 'Trustee Name',
+    role: 'Secretary',
+    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80',
+    description: 'Coordinating events and managing operations with dedication and integrity.',
+  },
+  {
+    name: 'Trustee Name',
+    role: 'Treasurer',
+    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80',
+    description: 'Ensuring financial transparency and accountability in all our activities.',
+  },
+];
+
+const values = [
+  {
+    title: 'Compassion',
+    description: 'We serve with love and empathy, treating every individual with dignity and respect.',
+    icon: '❤️',
+  },
+  {
+    title: 'Transparency',
+    description: 'We maintain complete openness in our operations and financial dealings.',
+    icon: '🔍',
+  },
+  {
+    title: 'Community',
+    description: 'We believe in the power of collective action to create lasting change.',
+    icon: '🤝',
+  },
+  {
+    title: 'Sustainability',
+    description: 'We aim to build sustainable solutions for long-term community welfare.',
+    icon: '🌱',
+  },
+];
+---
+
+<Layout 
+  title="About Us" 
+  description="Learn about Dokka Seethamma Charitable Trust, our mission, values, and the legacy of the Golden Lady who inspired our work."
+>
+  <Navigation />
+
+  <!-- Hero Section -->
+  <section class="relative pt-32 pb-16 lg:pb-24 bg-gradient-to-b from-golden-50 to-cream-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto">
+        <span class="inline-block px-4 py-1.5 rounded-full bg-golden-100 text-golden-700 text-sm font-medium mb-4">
+          About Us
+        </span>
+        <h1 class="text-4xl lg:text-5xl font-bold text-earth-900 mb-6">
+          The Legacy of <span class="text-golden-600">Dokka Seethamma</span>
+        </h1>
+        <p class="text-lg text-earth-600 leading-relaxed">
+          Continuing the golden tradition of selfless service and compassion.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story Section -->
+  <section class="py-16 lg:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div class="relative">
+          <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-xl">
+            <img 
+              src="https://images.unsplash.com/photo-1594708767771-a7502f4ead5d?w=800&q=80" 
+              alt="Dokka Seethamma" 
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="absolute -bottom-6 -right-6 w-48 h-48 bg-golden-100 rounded-2xl -z-10"></div>
+          <div class="absolute -top-6 -left-6 w-32 h-32 bg-golden-200 rounded-2xl -z-10"></div>
+        </div>
+        
+        <div>
+          <h2 class="text-3xl lg:text-4xl font-bold text-earth-900 mb-6">
+            The Golden Lady Who Fed <span class="text-golden-600">Millions</span>
+          </h2>
+          <div class="prose prose-lg text-earth-600">
+            <p class="mb-4">
+              Dokka Seethamma, affectionately known as the "Golden Lady," was a beacon of hope and compassion in her community. Throughout her life, she dedicated herself to serving food to the hungry, becoming a symbol of selfless service and unconditional love.
+            </p>
+            <p class="mb-4">
+              Her kitchen was always open, and no one who came to her door was ever turned away hungry. She believed that feeding a person was the highest form of service - a belief that sustained her work for decades.
+            </p>
+            <p>
+              Inspired by her unwavering commitment to humanity, Dokka Seethamma Charitable Trust was established to carry forward her noble mission in the modern era.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission & Vision -->
+  <section class="py-16 lg:py-24 bg-cream-50" id="mission">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-8 lg:gap-12">
+        <div class="bg-white rounded-2xl p-8 lg:p-10 shadow-sm">
+          <div class="w-14 h-14 rounded-xl bg-golden-100 flex items-center justify-center text-golden-600 mb-6">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-earth-900 mb-4">Our Mission</h3>
+          <p class="text-earth-600 leading-relaxed">
+            To eradicate hunger and provide nutritional support to the underprivileged through regular food distribution programs. We are committed to extending our services to education support, empowering underprivileged children with knowledge and opportunities for a brighter future.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-8 lg:p-10 shadow-sm">
+          <div class="w-14 h-14 rounded-xl bg-golden-100 flex items-center justify-center text-golden-600 mb-6">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-earth-900 mb-4">Our Vision</h3>
+          <p class="text-earth-600 leading-relaxed">
+            A world where no one goes to bed hungry, and every child has access to quality education. We envision communities where compassion drives action, and collective efforts create sustainable change for generations to come.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="py-16 lg:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <span class="inline-block px-4 py-1.5 rounded-full bg-golden-100 text-golden-700 text-sm font-medium mb-4">
+          Our Values
+        </span>
+        <h2 class="text-3xl lg:text-4xl font-bold text-earth-900">
+          Principles That <span class="text-golden-600">Guide Us</span>
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {values.map((value) => (
+          <div class="bg-cream-50 rounded-xl p-6 text-center hover:shadow-md transition-shadow">
+            <span class="text-4xl mb-4 block">{value.icon}</span>
+            <h3 class="text-lg font-bold text-earth-900 mb-2">{value.title}</h3>
+            <p class="text-earth-600 text-sm">{value.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="py-16 lg:py-24 bg-cream-50" id="team">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <span class="inline-block px-4 py-1.5 rounded-full bg-golden-100 text-golden-700 text-sm font-medium mb-4">
+          Our Team
+        </span>
+        <h2 class="text-3xl lg:text-4xl font-bold text-earth-900">
+          Meet the <span class="text-golden-600">Trustees</span>
+        </h2>
+        <p class="text-earth-600 mt-4 max-w-2xl mx-auto">
+          Dedicated individuals committed to serving the community with transparency and compassion.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        {teamMembers.map((member) => (
+          <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group">
+            <div class="aspect-[4/3] overflow-hidden">
+              <img 
+                src={member.image} 
+                alt={member.name} 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-earth-900">{member.name}</h3>
+              <p class="text-golden-600 font-medium mb-3">{member.role}</p>
+              <p class="text-earth-600 text-sm">{member.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section class="py-16 lg:py-24 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <span class="inline-block px-4 py-1.5 rounded-full bg-golden-100 text-golden-700 text-sm font-medium mb-4">
+          Our Journey
+        </span>
+        <h2 class="text-3xl lg:text-4xl font-bold text-earth-900">
+          Milestones & <span class="text-golden-600">Achievements</span>
+        </h2>
+      </div>
+
+      <div class="space-y-8">
+        <div class="flex gap-6">
+          <div class="flex flex-col items-center">
+            <div class="w-4 h-4 rounded-full bg-golden-500"></div>
+            <div class="w-0.5 flex-1 bg-golden-200"></div>
+          </div>
+          <div class="pb-8">
+            <span class="text-golden-600 font-bold">2022</span>
+            <h3 class="text-lg font-bold text-earth-900 mt-1">Trust Established</h3>
+            <p class="text-earth-600 mt-2">Dokka Seethamma Charitable Trust was founded with the mission to continue the legacy of the Golden Lady.</p>
+          </div>
+        </div>
+
+        <div class="flex gap-6">
+          <div class="flex flex-col items-center">
+            <div class="w-4 h-4 rounded-full bg-golden-500"></div>
+            <div class="w-0.5 flex-1 bg-golden-200"></div>
+          </div>
+          <div class="pb-8">
+            <span class="text-golden-600 font-bold">2023</span>
+            <h3 class="text-lg font-bold text-earth-900 mt-1">First Major Event</h3>
+            <p class="text-earth-600 mt-2">Successfully organized our first large-scale food distribution event, serving over 1,000 meals.</p>
+          </div>
+        </div>
+
+        <div class="flex gap-6">
+          <div class="flex flex-col items-center">
+            <div class="w-4 h-4 rounded-full bg-golden-500"></div>
+            <div class="w-0.5 flex-1 bg-golden-200"></div>
+          </div>
+          <div class="pb-8">
+            <span class="text-golden-600 font-bold">2024</span>
+            <h3 class="text-lg font-bold text-earth-900 mt-1">50,000 Meals Milestone</h3>
+            <p class="text-earth-600 mt-2">Reached the significant milestone of serving 50,000 meals to the underprivileged community.</p>
+          </div>
+        </div>
+
+        <div class="flex gap-6">
+          <div class="flex flex-col items-center">
+            <div class="w-4 h-4 rounded-full bg-golden-500"></div>
+          </div>
+          <div>
+            <span class="text-golden-600 font-bold">2025</span>
+            <h3 class="text-lg font-bold text-earth-900 mt-1">Expanding Horizons</h3>
+            <p class="text-earth-600 mt-2">Planning to extend services to education support for underprivileged children.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 lg:py-24 bg-gradient-to-r from-golden-500 to-golden-600">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl lg:text-4xl font-bold text-white mb-6">
+        Be Part of Our Story
+      </h2>
+      <p class="text-golden-100 text-lg mb-8 max-w-2xl mx-auto">
+        Join us in continuing the legacy of Dokka Seethamma. Your support can help us serve many more.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/donate"
+          class="inline-flex items-center justify-center px-8 py-4 rounded-full bg-white text-golden-600 font-semibold text-lg shadow-lg hover:shadow-xl transition-all"
+        >
+          Donate Now
+        </a>
+        <a
+          href="/contact"
+          class="inline-flex items-center justify-center px-8 py-4 rounded-full border-2 border-white text-white font-semibold text-lg hover:bg-white/10 transition-all"
+        >
+          Contact Us
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

@@ -1,0 +1,129 @@
+---
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/events', label: 'Events' },
+  { href: '/gallery', label: 'Gallery' },
+  { href: '/contact', label: 'Contact' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-cream-50/95 backdrop-blur-sm border-b border-golden-200/50 transition-all duration-300" id="header">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav class="flex items-center justify-between h-16 lg:h-20">
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-gradient-to-br from-golden-400 to-golden-600 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow">
+          <svg class="w-6 h-6 lg:w-7 lg:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+          </svg>
+        </div>
+        <div class="hidden sm:block">
+          <span class="text-lg lg:text-xl font-bold text-earth-900">Dokka Seethamma</span>
+          <span class="block text-xs text-golden-700 -mt-1">Charitable Trust</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden lg:flex items-center gap-8">
+        {navLinks.map(link => (
+          <a
+            href={link.href}
+            class:list={[
+              'text-sm font-medium transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-golden-500 after:transition-transform',
+              currentPath === link.href 
+                ? 'text-golden-700 after:scale-x-100' 
+                : 'text-earth-600 hover:text-golden-700 after:scale-x-0 hover:after:scale-x-100'
+            ]}
+          >
+            {link.label}
+          </a>
+        ))}
+        <a
+          href="/donate"
+          class="inline-flex items-center px-5 py-2.5 rounded-full bg-gradient-to-r from-golden-500 to-golden-600 text-white text-sm font-semibold shadow-md hover:shadow-lg hover:from-golden-600 hover:to-golden-700 transition-all transform hover:-translate-y-0.5"
+        >
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+          </svg>
+          Donate Now
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button
+        type="button"
+        class="lg:hidden p-2 rounded-lg text-earth-600 hover:text-golden-700 hover:bg-golden-100 transition-colors"
+        aria-label="Toggle menu"
+        id="mobile-menu-btn"
+      >
+        <svg class="w-6 h-6 menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+        <svg class="w-6 h-6 close-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="lg:hidden hidden bg-cream-50 border-t border-golden-200/50" id="mobile-menu">
+      <div class="py-3 space-y-1">
+        {navLinks.map(link => (
+          <a
+            href={link.href}
+            class:list={[
+              'block px-4 py-3 text-base font-medium rounded-lg transition-colors',
+              currentPath === link.href
+                ? 'text-golden-700 bg-golden-100'
+                : 'text-earth-600 hover:text-golden-700 hover:bg-golden-50'
+            ]}
+          >
+            {link.label}
+          </a>
+        ))}
+        <a
+          href="/donate"
+          class="block mx-4 mt-4 px-4 py-3 text-center rounded-lg bg-gradient-to-r from-golden-500 to-golden-600 text-white font-semibold shadow-md"
+        >
+          Donate Now
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById('header');
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuIcon = mobileMenuBtn?.querySelector('.menu-icon');
+  const closeIcon = mobileMenuBtn?.querySelector('.close-icon');
+
+  // Header scroll effect
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 10) {
+      header?.classList.add('shadow-md');
+    } else {
+      header?.classList.remove('shadow-md');
+    }
+  });
+
+  // Mobile menu toggle
+  mobileMenuBtn?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+    menuIcon?.classList.toggle('hidden');
+    closeIcon?.classList.toggle('hidden');
+  });
+
+  // Close mobile menu when clicking a link
+  mobileMenu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu?.classList.add('hidden');
+      menuIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+    });
+  });
+</script>
