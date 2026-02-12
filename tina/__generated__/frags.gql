@@ -1,0 +1,54 @@
+fragment EventsParts on Events {
+  __typename
+  title
+  date
+  location
+  image
+  status
+  description
+}
+
+fragment GalleryParts on Gallery {
+  __typename
+  title
+  image
+  category
+  description
+}
+
+fragment NewsParts on News {
+  __typename
+  title
+  date
+  featured
+  image
+  content
+}
+
+fragment SponsorsParts on Sponsors {
+  __typename
+  name
+  logo
+  tier
+  website
+  description
+}
+
+fragment NewslettersParts on Newsletters {
+  __typename
+  title
+  date
+  pdf
+  content
+}
+
+fragment TransparencyParts on Transparency {
+  __typename
+  title
+  month
+  year
+  donations
+  expenses
+  pdf
+  summary
+}
