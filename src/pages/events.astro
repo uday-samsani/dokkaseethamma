@@ -5,52 +5,17 @@ import Footer from '@/components/Footer.astro';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Calendar, Clock, MapPin, Users, ArrowRight } from "lucide-react";
+import { Calendar, Clock, MapPin, Users } from "lucide-react";
 
 const upcomingEvents = [
-  {
-    id: 'event-0',
-    title: 'Monthly Food Distribution',
-    date: '2025-02-25',
-    time: '10:00 AM - 2:00 PM',
-    location: 'Community Center, Vijayawada',
-    image: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?w=800&q=80',
-    description: 'Join us as we serve nutritious meals to over 500 people in need.',
-  },
-  {
-    id: 'event-1',
-    title: 'Annadanam Program',
-    date: '2025-03-08',
-    time: '11:00 AM - 3:00 PM',
-    location: 'Temple Premises, Guntur',
-    image: 'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=800&q=80',
-    description: 'Special food distribution event in honor of Dokka Seethamma.',
-  },
+  { id: 'event-0', title: 'Monthly Food Distribution', date: '2025-02-25', time: '10:00 AM - 2:00 PM', location: 'Community Center, Vijayawada', image: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?w=800&q=80', description: 'Join us as we serve nutritious meals to over 500 people in need.' },
+  { id: 'event-1', title: 'Annadanam Program', date: '2025-03-08', time: '11:00 AM - 3:00 PM', location: 'Temple Premises, Guntur', image: 'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=800&q=80', description: 'Special food distribution event in honor of Dokka Seethamma.' },
 ];
 
 const pastEvents = [
-  {
-    title: 'New Year Food Drive',
-    date: '2025-01-01',
-    mealsServed: 1200,
-    location: 'Multiple Locations, Vijayawada',
-    description: 'Welcomed the new year by serving over 1,200 meals.',
-  },
-  {
-    title: 'Christmas Special Distribution',
-    date: '2024-12-25',
-    mealsServed: 800,
-    location: 'Old Age Home & Orphanage',
-    description: 'Spread Christmas cheer to elderly and children.',
-  },
-  {
-    title: 'Monthly Distribution - November',
-    date: '2024-11-28',
-    mealsServed: 650,
-    location: 'Community Center, Vijayawada',
-    description: 'Regular monthly distribution serving nutritious meals.',
-  },
+  { title: 'New Year Food Drive', date: '2025-01-01', mealsServed: 1200, description: 'Welcomed the new year by serving over 1,200 meals.' },
+  { title: 'Christmas Special', date: '2024-12-25', mealsServed: 800, description: 'Spread Christmas cheer to elderly and children.' },
+  { title: 'Monthly - November', date: '2024-11-28', mealsServed: 650, description: 'Regular monthly distribution serving nutritious meals.' },
 ];
 
 const transparencyReports = [
@@ -61,47 +26,35 @@ const transparencyReports = [
 
 const formatDate = (dateString: string) => {
   const date = new Date(dateString);
-  return {
-    day: date.getDate(),
-    month: date.toLocaleString('en-US', { month: 'short' }),
-    full: date.toLocaleString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }),
-  };
+  return { day: date.getDate(), month: date.toLocaleString('en-US', { month: 'short' }), full: date.toLocaleString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) };
 };
 ---
 
-<Layout title="Events" description="View upcoming food distribution events and past activities of Dokka Seethamma Charitable Trust.">
+<Layout title="Events" description="View upcoming food distribution events and past activities.">
   <Navigation />
 
-  <!-- Hero -->
   <section class="relative pt-32 pb-16 lg:pb-24 bg-gradient-to-b from-golden-50 to-cream-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto">
-        <Badge variant="outline" className="mb-4 text-golden-700 border-golden-300">Events</Badge>
-        <h1 class="text-4xl lg:text-5xl font-bold text-earth-900 mb-6">
-          Upcoming <span class="text-golden-600">Events</span>
-        </h1>
-        <p class="text-lg text-earth-600 leading-relaxed">
-          Join us at our food distribution events and be part of the change.
-        </p>
-      </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <Badge variant="outline" className="mb-4 text-golden-700 border-golden-300">Events</Badge>
+      <h1 class="text-4xl lg:text-5xl font-bold text-earth-900 mb-6">Upcoming <span class="text-golden-600">Events</span></h1>
     </div>
   </section>
 
-  <!-- Events Tabs -->
   <section class="py-16 lg:py-24 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <Tabs defaultValue="upcoming" className="w-full">
-        <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-12">
-          <TabsTrigger value="upcoming">Upcoming</TabsTrigger>
-          <TabsTrigger value="past">Past Events</TabsTrigger>
-        </TabsList>
+      <!-- Custom Tabs -->
+      <div class="tabs-container">
+        <div class="flex justify-center gap-2 mb-8">
+          <button class="tab-btn px-6 py-2 rounded-full border border-cream-200 data-[active=true]:bg-golden-500 data-[active=true]:text-white data-[active=true]:border-golden-500 transition-all" data-tab="upcoming" data-active="true">Upcoming</button>
+          <button class="tab-btn px-6 py-2 rounded-full border border-cream-200 data-[active=true]:bg-golden-500 data-[active=true]:text-white data-[active=true]:border-golden-500 transition-all" data-tab="past">Past Events</button>
+        </div>
 
-        <TabsContent value="upcoming" className="space-y-6">
+        <div class="tab-content" data-content="upcoming">
           <div class="grid md:grid-cols-2 gap-6">
             {upcomingEvents.map((event) => {
               const date = formatDate(event.date);
               return (
-                <Card key={event.id} className="group overflow-hidden hover:shadow-xl transition-all">
+                <Card className="group overflow-hidden hover:shadow-xl transition-all">
                   <div class="aspect-video overflow-hidden">
                     <img src={event.image} alt={event.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform" />
                   </div>
@@ -116,38 +69,27 @@ const formatDate = (dateString: string) => {
                     <h3 class="text-xl font-bold text-earth-900 mb-2">{event.title}</h3>
                     <p class="text-earth-600 text-sm mb-4">{event.description}</p>
                     <div class="space-y-2 text-sm text-earth-500 mb-4">
-                      <div class="flex items-center gap-2">
-                        <Clock className="w-4 h-4 text-golden-500" />
-                        <span>{event.time}</span>
-                      </div>
-                      <div class="flex items-center gap-2">
-                        <MapPin className="w-4 h-4 text-golden-500" />
-                        <span>{event.location}</span>
-                      </div>
+                      <div class="flex items-center gap-2"><Clock className="w-4 h-4 text-golden-500" /><span>{event.time}</span></div>
+                      <div class="flex items-center gap-2"><MapPin className="w-4 h-4 text-golden-500" /><span>{event.location}</span></div>
                     </div>
-                    <a href={`/contact?event=${event.id}`}>
-                      <Button className="w-full bg-golden-500 hover:bg-golden-600">Register Interest</Button>
-                    </a>
+                    <a href={`/contact?event=${event.id}`}><Button className="w-full bg-golden-500 hover:bg-golden-600">Register Interest</Button></a>
                   </CardContent>
                 </Card>
               );
             })}
           </div>
-        </TabsContent>
+        </div>
 
-        <TabsContent value="past" className="space-y-4">
+        <div class="tab-content hidden" data-content="past">
           <div class="grid md:grid-cols-2 gap-4">
             {pastEvents.map((event) => {
               const date = formatDate(event.date);
               return (
-                <Card key={event.title} className="group hover:shadow-md transition-all">
+                <Card className="group hover:shadow-md transition-all">
                   <CardContent className="p-6">
                     <div class="flex justify-between items-start mb-2">
                       <Badge variant="outline" className="text-golden-700 border-golden-300">{date.full}</Badge>
-                      <span class="text-green-600 text-sm font-medium flex items-center gap-1">
-                        <Users className="w-4 h-4" />
-                        {event.mealsServed} meals
-                      </span>
+                      <span class="text-green-600 text-sm font-medium flex items-center gap-1"><Users className="w-4 h-4" />{event.mealsServed} meals</span>
                     </div>
                     <h3 class="text-lg font-bold text-earth-900 mb-2">{event.title}</h3>
                     <p class="text-earth-600 text-sm">{event.description}</p>
@@ -156,43 +98,24 @@ const formatDate = (dateString: string) => {
               );
             })}
           </div>
-        </TabsContent>
-      </Tabs>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Transparency Reports -->
   <section class="py-16 lg:py-24 bg-cream-50" id="reports">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
         <Badge variant="outline" className="mb-4 text-golden-700 border-golden-300">Transparency Reports</Badge>
-        <h2 class="text-3xl lg:text-4xl font-bold text-earth-900">
-          Monthly <span class="text-golden-600">Reports</span>
-        </h2>
-        <p class="text-earth-600 mt-4 max-w-2xl mx-auto">
-          Complete transparency in our operations and finances.
-        </p>
+        <h2 class="text-3xl lg:text-4xl font-bold text-earth-900">Monthly <span class="text-golden-600">Reports</span></h2>
       </div>
-
       <Card className="overflow-hidden">
         <div class="overflow-x-auto">
           <table class="w-full">
-            <thead class="bg-golden-100">
-              <tr>
-                <th class="px-6 py-4 text-left text-sm font-semibold text-earth-900">Month</th>
-                <th class="px-6 py-4 text-left text-sm font-semibold text-earth-900">Meals Served</th>
-                <th class="px-6 py-4 text-left text-sm font-semibold text-earth-900">Volunteers</th>
-                <th class="px-6 py-4 text-left text-sm font-semibold text-earth-900">Expenses</th>
-              </tr>
-            </thead>
+            <thead class="bg-golden-100"><tr><th class="px-6 py-4 text-left text-sm font-semibold text-earth-900">Month</th><th class="px-6 py-4 text-left text-sm font-semibold text-earth-900">Meals</th><th class="px-6 py-4 text-left text-sm font-semibold text-earth-900">Volunteers</th><th class="px-6 py-4 text-left text-sm font-semibold text-earth-900">Expenses</th></tr></thead>
             <tbody class="divide-y divide-golden-200">
               {transparencyReports.map((report) => (
-                <tr class="hover:bg-golden-50/50">
-                  <td class="px-6 py-4 text-sm text-earth-900 font-medium">{report.month}</td>
-                  <td class="px-6 py-4 text-sm text-earth-600">{report.meals.toLocaleString()}</td>
-                  <td class="px-6 py-4 text-sm text-earth-600">{report.volunteers}</td>
-                  <td class="px-6 py-4 text-sm text-earth-600">{report.expenses}</td>
-                </tr>
+                <tr class="hover:bg-golden-50/50"><td class="px-6 py-4 text-sm text-earth-900 font-medium">{report.month}</td><td class="px-6 py-4 text-sm text-earth-600">{report.meals.toLocaleString()}</td><td class="px-6 py-4 text-sm text-earth-600">{report.volunteers}</td><td class="px-6 py-4 text-sm text-earth-600">{report.expenses}</td></tr>
               ))}
             </tbody>
           </table>
@@ -201,22 +124,26 @@ const formatDate = (dateString: string) => {
     </div>
   </section>
 
-  <!-- CTA -->
   <section class="py-16 lg:py-24 bg-gradient-to-r from-earth-800 to-earth-900">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl lg:text-4xl font-bold text-white mb-6">
-        Want to Host an Event?
-      </h2>
-      <p class="text-cream-200 text-lg mb-8">
-        We can help organize food distribution events in your community.
-      </p>
-      <a href="/contact">
-        <Button size="lg" className="bg-golden-500 hover:bg-golden-600 text-white rounded-full px-8">
-          Get in Touch
-        </Button>
-      </a>
+      <h2 class="text-3xl lg:text-4xl font-bold text-white mb-6">Want to Host an Event?</h2>
+      <a href="/contact"><Button size="lg" className="bg-golden-500 hover:bg-golden-600 text-white rounded-full px-8">Get in Touch</Button></a>
     </div>
   </section>
 
   <Footer />
+
+  <script>
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tab = btn.dataset.tab;
+        tabBtns.forEach(b => b.dataset.active = 'false');
+        btn.dataset.active = 'true';
+        tabContents.forEach(c => c.classList.add('hidden'));
+        document.querySelector(`[data-content="${tab}"]`)?.classList.remove('hidden');
+      });
+    });
+  </script>
 </Layout>

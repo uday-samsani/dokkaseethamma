@@ -8,8 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { MapPin, Mail, Phone, Clock, ArrowRight } from "lucide-react";
+import { MapPin, Mail, Phone, Clock, ChevronDown } from "lucide-react";
 
 const faqs = [
   { question: 'How can I donate to the trust?', answer: 'You can donate online through our secure donation page, or contact us directly for bank transfer details.' },
@@ -164,20 +163,32 @@ const contactInfo = [
         </h2>
       </div>
 
-      <Accordion type="single" collapsible className="w-full">
+      <div class="space-y-4">
         {faqs.map((faq, index) => (
-          <AccordionItem key={index} value={`item-${index}`} className="border-golden-100">
-            <AccordionTrigger className="text-left font-semibold text-earth-900 hover:text-golden-700">
-              {faq.question}
-            </AccordionTrigger>
-            <AccordionContent className="text-earth-600">
-              {faq.answer}
-            </AccordionContent>
-          </AccordionItem>
+          <div key={index} class="faq-item border border-golden-100 rounded-xl overflow-hidden">
+            <button class="faq-toggle w-full flex items-center justify-between p-5 text-left bg-cream-50 hover:bg-golden-50 transition-colors">
+              <span class="font-semibold text-earth-900 pr-4">{faq.question}</span>
+              <ChevronDown className="w-5 h-5 text-golden-600 flex-shrink-0 faq-icon transition-transform" />
+            </button>
+            <div class="faq-content hidden p-5 bg-white border-t border-golden-100">
+              <p class="text-earth-600">{faq.answer}</p>
+            </div>
+          </div>
         ))}
-      </Accordion>
+      </div>
     </div>
   </section>
 
   <Footer />
+
+  <script>
+    document.querySelectorAll('.faq-toggle').forEach(button => {
+      button.addEventListener('click', () => {
+        const content = button.nextElementSibling;
+        const icon = button.querySelector('.faq-icon');
+        content?.classList.toggle('hidden');
+        icon?.classList.toggle('rotate-180');
+      });
+    });
+  </script>
 </Layout>

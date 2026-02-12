@@ -4,8 +4,7 @@ import Navigation from '@/components/Navigation.astro';
 import Footer from '@/components/Footer.astro';
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ArrowRight, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 const galleryItems = [
   { src: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?w=1200&q=80', title: 'Community Food Distribution', category: 'events', description: 'Volunteers serving meals' },
@@ -27,81 +26,55 @@ const categories = [
 <Layout title="Gallery" description="Browse photos of our food distribution events and volunteers.">
   <Navigation />
 
-  <!-- Hero -->
   <section class="relative pt-32 pb-16 lg:pb-24 bg-gradient-to-b from-golden-50 to-cream-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto">
-        <Badge variant="outline" className="mb-4 text-golden-700 border-golden-300">Gallery</Badge>
-        <h1 class="text-4xl lg:text-5xl font-bold text-earth-900 mb-6">
-          Moments of <span class="text-golden-600">Compassion</span>
-        </h1>
-        <p class="text-lg text-earth-600 leading-relaxed">
-          A visual journey through our events, volunteers, and the communities we serve.
-        </p>
-      </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <Badge variant="outline" className="mb-4 text-golden-700 border-golden-300">Gallery</Badge>
+      <h1 class="text-4xl lg:text-5xl font-bold text-earth-900 mb-6">Moments of <span class="text-golden-600">Compassion</span></h1>
     </div>
   </section>
 
-  <!-- Gallery -->
   <section class="py-16 lg:py-24 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <Tabs defaultValue="all" className="w-full">
-        <TabsList className="flex flex-wrap justify-center gap-2 mb-12 bg-transparent h-auto">
-          {categories.map((cat) => (
-            <TabsTrigger 
-              key={cat.id} 
-              value={cat.id}
-              className="px-5 py-2.5 rounded-full data-[state=active]:bg-golden-500 data-[state=active]:text-white border border-cream-200"
-            >
-              {cat.label}
-            </TabsTrigger>
-          ))}
-        </TabsList>
-
+      <!-- Filter Buttons -->
+      <div class="flex flex-wrap justify-center gap-2 mb-12">
         {categories.map((cat) => (
-          <TabsContent key={cat.id} value={cat.id} className="mt-0">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {galleryItems
-                .filter(item => cat.id === 'all' || item.category === cat.id)
-                .map((item, index) => (
-                  <div 
-                    key={index}
-                    class="gallery-item group relative aspect-[4/3] rounded-xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl transition-all"
-                    data-src={item.src}
-                    data-title={item.title}
-                    data-desc={item.description}
-                  >
-                    <img 
-                      src={item.src} 
-                      alt={item.title} 
-                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      loading="lazy"
-                    />
-                    <div class="absolute inset-0 bg-gradient-to-t from-earth-900/80 via-earth-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
-                      <h3 class="text-white font-bold text-lg">{item.title}</h3>
-                      <p class="text-cream-200 text-sm">{item.description}</p>
-                    </div>
-                  </div>
-                ))}
-            </div>
-          </TabsContent>
+          <button 
+            class="gallery-filter px-5 py-2.5 rounded-full border border-cream-200 transition-all data-[active=true]:bg-golden-500 data-[active=true]:text-white data-[active=true]:border-golden-500"
+            data-category={cat.id}
+            data-active={cat.id === 'all' ? 'true' : 'false'}
+          >
+            {cat.label}
+          </button>
         ))}
-      </Tabs>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="gallery-grid">
+        {galleryItems.map((item, index) => (
+          <div 
+            class="gallery-item group relative aspect-[4/3] rounded-xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl transition-all"
+            data-category={item.category}
+            data-index={index}
+            data-src={item.src}
+            data-title={item.title}
+            data-desc={item.description}
+          >
+            <img src={item.src} alt={item.title} class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-earth-900/80 via-earth-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
+              <h3 class="text-white font-bold text-lg">{item.title}</h3>
+              <p class="text-cream-200 text-sm">{item.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 
   <!-- Lightbox -->
   <div id="lightbox" class="fixed inset-0 z-50 hidden bg-earth-900/95 backdrop-blur-sm">
-    <button id="lightbox-close" class="absolute top-4 right-4 z-10 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors">
-      <X className="w-6 h-6" />
-    </button>
-    <button id="lightbox-prev" class="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors">
-      <ChevronLeft className="w-6 h-6" />
-    </button>
-    <button id="lightbox-next" class="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors">
-      <ChevronRight className="w-6 h-6" />
-    </button>
+    <button id="lightbox-close" class="absolute top-4 right-4 z-10 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20"><X className="w-6 h-6" /></button>
+    <button id="lightbox-prev" class="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20"><ChevronLeft className="w-6 h-6" /></button>
+    <button id="lightbox-next" class="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20"><ChevronRight className="w-6 h-6" /></button>
     <div class="relative h-full flex flex-col items-center justify-center p-4 sm:p-8 lg:p-12">
       <img id="lightbox-img" src="" alt="" class="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl" />
       <div class="mt-4 text-center">
@@ -111,26 +84,12 @@ const categories = [
     </div>
   </div>
 
-  <!-- CTA -->
   <section class="py-16 lg:py-24 bg-gradient-to-r from-golden-500 to-golden-600">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl lg:text-4xl font-bold text-white mb-6">
-        Be Part of Our Story
-      </h2>
-      <p class="text-golden-100 text-lg mb-8">
-        Join us at our next event and help us create more moments of joy.
-      </p>
+      <h2 class="text-3xl lg:text-4xl font-bold text-white mb-6">Be Part of Our Story</h2>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="/events">
-          <Button size="lg" className="bg-white text-golden-600 hover:bg-cream-100 rounded-full px-8">
-            View Events
-          </Button>
-        </a>
-        <a href="/contact#volunteer">
-          <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 rounded-full px-8">
-            Volunteer With Us
-          </Button>
-        </a>
+        <a href="/events"><Button size="lg" className="bg-white text-golden-600 hover:bg-cream-100 rounded-full px-8">View Events</Button></a>
+        <a href="/contact#volunteer"><Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 rounded-full px-8">Volunteer With Us</Button></a>
       </div>
     </div>
   </section>
@@ -145,11 +104,11 @@ const categories = [
     let currentIndex = 0;
     let visibleItems = [];
 
-    function updateVisibleItems() {
-      const activeTab = document.querySelector('[role="tabpanel"]:not([hidden])');
-      if (activeTab) {
-        visibleItems = Array.from(activeTab.querySelectorAll('.gallery-item'));
-      }
+    function updateVisible() {
+      const activeCat = document.querySelector('.gallery-filter[data-active="true"]')?.dataset.category || 'all';
+      visibleItems = Array.from(document.querySelectorAll('.gallery-item')).filter(item => 
+        activeCat === 'all' || item.dataset.category === activeCat
+      );
     }
 
     function openLightbox(index) {
@@ -169,34 +128,33 @@ const categories = [
       document.body.style.overflow = '';
     }
 
-    function showPrev() {
-      currentIndex = (currentIndex - 1 + visibleItems.length) % visibleItems.length;
-      openLightbox(currentIndex);
-    }
+    function showPrev() { currentIndex = (currentIndex - 1 + visibleItems.length) % visibleItems.length; openLightbox(currentIndex); }
+    function showNext() { currentIndex = (currentIndex + 1) % visibleItems.length; openLightbox(currentIndex); }
 
-    function showNext() {
-      currentIndex = (currentIndex + 1) % visibleItems.length;
-      openLightbox(currentIndex);
-    }
+    document.querySelectorAll('.gallery-filter').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const cat = btn.dataset.category;
+        document.querySelectorAll('.gallery-filter').forEach(b => b.dataset.active = 'false');
+        btn.dataset.active = 'true';
+        document.querySelectorAll('.gallery-item').forEach(item => {
+          item.style.display = (cat === 'all' || item.dataset.category === cat) ? 'block' : 'none';
+        });
+        updateVisible();
+      });
+    });
 
-    // Event delegation for gallery items
-    document.addEventListener('click', (e) => {
-      const item = e.target.closest('.gallery-item');
-      if (item) {
-        updateVisibleItems();
-        const index = visibleItems.indexOf(item);
-        if (index !== -1) openLightbox(index);
-      }
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('click', () => {
+        updateVisible();
+        const idx = visibleItems.indexOf(item);
+        if (idx !== -1) openLightbox(idx);
+      });
     });
 
     document.getElementById('lightbox-close')?.addEventListener('click', closeLightbox);
     document.getElementById('lightbox-prev')?.addEventListener('click', showPrev);
     document.getElementById('lightbox-next')?.addEventListener('click', showNext);
-    
-    lightbox?.addEventListener('click', (e) => {
-      if (e.target === lightbox) closeLightbox();
-    });
-
+    lightbox?.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
     document.addEventListener('keydown', (e) => {
       if (lightbox.classList.contains('hidden')) return;
       if (e.key === 'Escape') closeLightbox();
