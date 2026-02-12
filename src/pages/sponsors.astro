@@ -1,0 +1,295 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Navigation from '@/components/Navigation.astro';
+import Footer from '@/components/Footer.astro';
+import SponsorCard from '@/components/SponsorCard.astro';
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Heart, Award, Users, TrendingUp, Mail } from "lucide-react";
+
+// Sample sponsors data - in production, this would come from TinaCMS
+const sponsors = {
+  platinum: [
+    { name: 'TechCorp India', tier: 'platinum' as const, logo: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=400&q=80', website: 'https://example.com', description: 'Leading technology solutions provider committed to social responsibility.' },
+  ],
+  gold: [
+    { name: 'Golden Foods Ltd', tier: 'gold' as const, logo: 'https://images.unsplash.com/photo-1549924231-f129b911e442?w=400&q=80', website: 'https://example.com', description: 'Food industry leader supporting community welfare initiatives.' },
+    { name: 'Sunrise Foundation', tier: 'gold' as const, logo: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&q=80', website: 'https://example.com', description: 'Dedicated to creating positive change in underserved communities.' },
+  ],
+  silver: [
+    { name: 'Community Bank', tier: 'silver' as const, logo: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&q=80', website: 'https://example.com', description: 'Local banking partner for community development.' },
+    { name: 'Health First', tier: 'silver' as const, logo: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&q=80', website: 'https://example.com', description: 'Healthcare provider supporting wellness initiatives.' },
+    { name: 'EduTech Solutions', tier: 'silver' as const, logo: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=400&q=80', website: 'https://example.com', description: 'Education technology company empowering learners.' },
+  ],
+  bronze: [
+    { name: 'Local Grocers', tier: 'bronze' as const, website: 'https://example.com' },
+    { name: 'City Restaurant', tier: 'bronze' as const, website: 'https://example.com' },
+    { name: 'Neighborhood Cafe', tier: 'bronze' as const, website: 'https://example.com' },
+    { name: 'Town Hardware', tier: 'bronze' as const, website: 'https://example.com' },
+  ],
+  monthly: [
+    { name: 'Anonymous Donor', tier: 'partner' as const, isMonthly: true, description: 'Consistent monthly supporter since 2023' },
+    { name: 'Ramesh & Family', tier: 'partner' as const, isMonthly: true, description: 'Monthly donors supporting food distribution' },
+    { name: 'Sita Foundation', tier: 'partner' as const, isMonthly: true, description: 'Regular monthly contribution for education initiatives' },
+  ],
+};
+
+const sponsorshipBenefits = [
+  {
+    tier: 'Platinum',
+    amount: '₹5,00,000+',
+    benefits: ['Large logo on all materials', 'Website featured placement', 'Event speaking opportunities', 'Quarterly impact reports', 'Social media recognition'],
+    highlight: true,
+  },
+  {
+    tier: 'Gold',
+    amount: '₹2,00,000+',
+    benefits: ['Medium logo on materials', 'Website sponsor page', 'Event recognition', 'Bi-annual impact reports', 'Social media mentions'],
+    highlight: false,
+  },
+  {
+    tier: 'Silver',
+    amount: '₹50,000+',
+    benefits: ['Small logo on materials', 'Website listing', 'Event acknowledgment', 'Annual impact report'],
+    highlight: false,
+  },
+  {
+    tier: 'Bronze',
+    amount: '₹10,000+',
+    benefits: ['Name on materials', 'Website listing', 'Newsletter recognition'],
+    highlight: false,
+  },
+];
+
+const impactStats = [
+  { value: '15+', label: 'Corporate Partners', icon: Award },
+  { value: '50+', label: 'Monthly Donors', icon: Users },
+  { value: '₹25L+', label: 'Sponsorship Raised', icon: TrendingUp },
+];
+---
+
+<Layout 
+  title="Our Sponsors" 
+  description="Meet the generous organizations and individuals supporting Dokka Seethamma Charitable Trust."
+>
+  <Navigation />
+
+  <!-- Hero Section -->
+  <section class="relative pt-32 pb-16 lg:pb-24 bg-gradient-to-b from-golden-50 to-cream-50 dark:from-gray-900 dark:to-gray-800 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <Badge variant="outline" className="mb-4 text-golden-700 dark:text-golden-400 border-golden-300 dark:border-golden-500/50">Partners & Sponsors</Badge>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-earth-900 dark:text-gray-100 mb-4 sm:mb-6">
+        Our <span class="text-golden-600 dark:text-golden-400">Supporters</span>
+      </h1>
+      <p class="text-base sm:text-lg text-earth-600 dark:text-gray-400 max-w-2xl mx-auto mb-8">
+        We are grateful to our sponsors and partners who make our mission possible. Their generosity helps us serve thousands in need.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#become-sponsor">
+          <Button size="lg" className="w-full sm:w-auto min-h-[48px] bg-gradient-to-r from-golden-500 to-golden-600 hover:from-golden-600 hover:to-golden-700 text-white rounded-full px-8">
+            <Heart className="w-5 h-5 mr-2" />
+            Become a Sponsor
+          </Button>
+        </a>
+        <a href="/contact">
+          <Button size="lg" variant="outline" className="w-full sm:w-auto min-h-[48px] border-golden-500 text-golden-700 dark:text-golden-400 hover:bg-golden-50 dark:hover:bg-golden-900/20 rounded-full px-8">
+            Contact Us
+          </Button>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Impact Stats -->
+  <section class="py-12 lg:py-16 bg-white dark:bg-gray-800 transition-colors border-b border-golden-100 dark:border-gray-700">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-3 gap-6 lg:gap-8">
+        {impactStats.map((stat) => (
+          <div class="text-center">
+            <stat.icon className="w-8 h-8 mx-auto text-golden-500 mb-3" />
+            <div class="text-2xl sm:text-3xl lg:text-4xl font-bold text-golden-600 dark:text-golden-400">{stat.value}</div>
+            <div class="text-sm sm:text-base text-earth-600 dark:text-gray-400 mt-1">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Platinum & Gold Sponsors -->
+  {(sponsors.platinum.length > 0 || sponsors.gold.length > 0) && (
+    <section class="py-16 lg:py-24 bg-cream-50 dark:bg-gray-900 transition-colors">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <Badge variant="outline" className="mb-4 text-golden-700 dark:text-golden-400 border-golden-300 dark:border-golden-500/50">Premium Partners</Badge>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-earth-900 dark:text-gray-100">
+            Platinum & <span class="text-golden-600 dark:text-golden-400">Gold Sponsors</span>
+          </h2>
+        </div>
+
+        {/* Platinum */}
+        {sponsors.platinum.length > 0 && (
+          <div class="mb-12">
+            <h3 class="text-lg font-semibold text-earth-900 dark:text-gray-100 mb-6 flex items-center gap-2 justify-center">
+              <span class="w-2 h-2 rounded-full bg-slate-400"></span>
+              Platinum Partners
+            </h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {sponsors.platinum.map((sponsor) => (
+                <SponsorCard {...sponsor} size="large" />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Gold */}
+        {sponsors.gold.length > 0 && (
+          <div>
+            <h3 class="text-lg font-semibold text-earth-900 dark:text-gray-100 mb-6 flex items-center gap-2 justify-center">
+              <span class="w-2 h-2 rounded-full bg-golden-400"></span>
+              Gold Partners
+            </h3>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {sponsors.gold.map((sponsor) => (
+                <SponsorCard {...sponsor} size="large" />
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
+  )}
+
+  <!-- Silver Sponsors -->
+  {sponsors.silver.length > 0 && (
+    <section class="py-16 lg:py-24 bg-white dark:bg-gray-800 transition-colors">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <Badge variant="outline" className="mb-4 text-gray-600 dark:text-gray-400 border-gray-300 dark:border-gray-600">Silver Tier</Badge>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-earth-900 dark:text-gray-100">
+            Silver <span class="text-gray-500">Sponsors</span>
+          </h2>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {sponsors.silver.map((sponsor) => (
+            <SponsorCard {...sponsor} size="medium" />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {/* Bronze & Community Partners */}
+  {sponsors.bronze.length > 0 && (
+    <section class="py-16 lg:py-24 bg-cream-50 dark:bg-gray-900 transition-colors">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <Badge variant="outline" className="mb-4 text-orange-600 dark:text-orange-400 border-orange-300 dark:border-orange-600">Community Tier</Badge>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-earth-900 dark:text-gray-100">
+            Bronze & <span class="text-orange-600 dark:text-orange-400">Community Partners</span>
+          </h2>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+          {sponsors.bronze.map((sponsor) => (
+            <SponsorCard {...sponsor} size="small" />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {/* Monthly Recurring Supporters */}
+  {sponsors.monthly.length > 0 && (
+    <section class="py-16 lg:py-24 bg-gradient-to-br from-golden-500/10 to-golden-600/10 dark:from-golden-900/20 dark:to-golden-800/20 transition-colors">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <Badge variant="outline" className="mb-4 text-golden-700 dark:text-golden-400 border-golden-300 dark:border-golden-500/50 bg-white dark:bg-gray-800">
+            <Heart className="w-3 h-3 mr-1 inline" />
+            Monthly Heroes
+          </Badge>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-earth-900 dark:text-gray-100">
+            Monthly <span class="text-golden-600 dark:text-golden-400">Recurring Supporters</span>
+          </h2>
+          <p class="text-earth-600 dark:text-gray-400 mt-4 max-w-2xl mx-auto">
+            These dedicated individuals and organizations provide consistent monthly support, enabling us to plan and sustain our programs.
+          </p>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          {sponsors.monthly.map((sponsor) => (
+            <SponsorCard {...sponsor} size="medium" />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {/* Become a Sponsor CTA */}
+  <section id="become-sponsor" class="py-16 lg:py-24 bg-white dark:bg-gray-800 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <Badge variant="outline" className="mb-4 text-golden-700 dark:text-golden-400 border-golden-300 dark:border-golden-500/50">Partnership Opportunities</Badge>
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-earth-900 dark:text-gray-100">
+          Become a <span class="text-golden-600 dark:text-golden-400">Sponsor</span>
+        </h2>
+        <p class="text-earth-600 dark:text-gray-400 mt-4 max-w-2xl mx-auto">
+          Join our community of supporters and make a lasting impact. Choose a sponsorship tier that aligns with your organization's goals.
+        </p>
+      </div>
+
+      {/* Benefits Grid */}
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        {sponsorshipBenefits.map((tier) => (
+          <Card className={`relative overflow-hidden ${tier.highlight ? 'border-golden-400 dark:border-golden-500 shadow-lg scale-105' : 'dark:bg-gray-800 dark:border-gray-700'}`}>
+            {tier.highlight && (
+              <div class="absolute top-0 left-0 right-0 bg-gradient-to-r from-golden-500 to-golden-600 text-white text-xs font-medium text-center py-1">
+                Most Popular
+              </div>
+            )}
+            <CardContent className={`p-6 ${tier.highlight ? 'pt-10' : ''}`}>
+              <h3 class="text-xl font-bold text-earth-900 dark:text-gray-100 mb-1">{tier.tier}</h3>
+              <p class="text-golden-600 dark:text-golden-400 font-semibold mb-4">{tier.amount}</p>
+              <ul class="space-y-2">
+                {tier.benefits.map((benefit) => (
+                  <li class="flex items-start gap-2 text-sm text-earth-600 dark:text-gray-400">
+                    <svg class="w-4 h-4 text-golden-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    {benefit}
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      {/* CTA Card */}
+      <Card className="bg-gradient-to-r from-golden-500 to-golden-600 border-0 overflow-hidden">
+        <CardContent className="p-8 lg:p-12 text-center">
+          <h3 class="text-2xl lg:text-3xl font-bold text-white mb-4">
+            Ready to Make an Impact?
+          </h3>
+          <p class="text-golden-100 max-w-2xl mx-auto mb-8">
+            Whether you're a corporation looking for CSR opportunities or an individual wanting to contribute, we'd love to discuss how we can work together.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/contact">
+              <Button size="lg" className="w-full sm:w-auto bg-white text-golden-600 hover:bg-cream-100 rounded-full px-8">
+                <Mail className="w-5 h-5 mr-2" />
+                Get in Touch
+              </Button>
+            </a>
+            <a href="/donate">
+              <Button size="lg" variant="outline" className="w-full sm:w-auto border-white text-white hover:bg-white/10 rounded-full px-8">
+                <Heart className="w-5 h-5 mr-2" />
+                Donate Now
+              </Button>
+            </a>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
