@@ -1,15 +1,17 @@
 // tina/config.ts
-import { defineConfig } from "tinacms";
+import { defineConfig, LocalAuthProvider } from "tinacms";
 var branch = process.env.HEAD || process.env.VERCEL_GIT_COMMIT_REF || "cms-integration";
+var isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true" || !process.env.TINA_CLIENT_ID && !process.env.TINA_TOKEN;
 var config_default = defineConfig({
   branch,
-  clientId: null,
-  // For local development, set to null
-  token: null,
-  // For local development, set to null
+  clientId: process.env.TINA_CLIENT_ID || null,
+  token: process.env.TINA_TOKEN || null,
+  // Use local auth provider for development
+  authProvider: isLocal ? new LocalAuthProvider() : void 0,
   build: {
     outputFolder: "admin",
-    publicFolder: "public"
+    publicFolder: "public",
+    basePath: "admin"
   },
   media: {
     tina: {
