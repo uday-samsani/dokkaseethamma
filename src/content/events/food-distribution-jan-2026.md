@@ -2,7 +2,7 @@
 title: "Food Distribution Drive"
 date: 2026-01-20T09:00:00.000Z
 location: "Main Market, Dokka Seethamma"
-image: /uploads/food-drive.jpg
+image: /uploads/food-drive.svg
 status: past
 description: |
   Successfully distributed food supplies to over 200 families in the community.

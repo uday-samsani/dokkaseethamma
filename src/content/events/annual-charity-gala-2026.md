@@ -2,7 +2,7 @@
 title: "Annual Charity Gala 2026"
 date: 2026-03-15T10:00:00.000Z
 location: "Dokka Seethamma Community Hall, East Godavari District"
-image: /uploads/event-gala.jpg
+image: /uploads/event-gala.svg
 status: upcoming
 description: |
   Join us for our Annual Charity Gala celebrating 5 years of service to the community. 

@@ -2,7 +2,7 @@
 title: "Independence Day Celebration"
 date: 2026-08-15T09:00:00.000Z
 location: "Dokka Seethamma School Grounds"
-image: /uploads/independence-day.jpg
+image: /uploads/independence-day.svg
 status: upcoming
 description: |
   Join us for the 79th Independence Day celebration with flag hoisting, 
