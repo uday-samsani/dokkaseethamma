@@ -1,0 +1,233 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Navigation from '@/components/Navigation.astro';
+import Footer from '@/components/Footer.astro';
+import NewsletterSignup from '@/components/NewsletterSignup.astro';
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Mail, Calendar, Heart, FileText, Bell, Sparkles } from "lucide-react";
+
+// Sample past newsletters - in production from TinaCMS
+const pastNewsletters = [
+  {
+    title: 'January 2025 Newsletter',
+    date: '2025-01-15',
+    excerpt: 'Celebrating our 50,000th meal served and welcoming new volunteers to the team.',
+    featured: true,
+  },
+  {
+    title: 'December 2024 Year in Review',
+    date: '2024-12-20',
+    excerpt: 'Looking back at an incredible year of service, growth, and community impact.',
+    featured: false,
+  },
+  {
+    title: 'November 2024: Food for All',
+    date: '2024-11-10',
+    excerpt: 'Special coverage of our Annadanam program and upcoming winter initiatives.',
+    featured: false,
+  },
+];
+
+const benefits = [
+  {
+    icon: Calendar,
+    title: 'Event Updates',
+    description: 'Be the first to know about our upcoming food distribution events and volunteer opportunities.',
+  },
+  {
+    icon: Heart,
+    title: 'Impact Stories',
+    description: 'Read heartwarming stories about the lives we touch together through your support.',
+  },
+  {
+    icon: FileText,
+    title: 'Transparency Reports',
+    description: 'Receive monthly reports on how donations are used and meals distributed.',
+  },
+  {
+    icon: Bell,
+    title: 'Urgent Needs',
+    description: 'Get notified when we have urgent needs or emergency relief initiatives.',
+  },
+];
+
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+};
+---
+
+<Layout 
+  title="Newsletter" 
+  description="Subscribe to the Dokka Seethamma Charitable Trust newsletter for updates on events, impact stories, and ways to help."
+>
+  <Navigation />
+
+  <!-- Hero Section -->
+  <section class="relative pt-32 pb-16 lg:pb-24 bg-gradient-to-b from-golden-50 to-cream-50 dark:from-gray-900 dark:to-gray-800 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <Badge variant="outline" className="mb-4 text-golden-700 dark:text-golden-400 border-golden-300 dark:border-golden-500/50">Stay Connected</Badge>
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-earth-900 dark:text-gray-100 mb-6">
+            Stay <span class="text-golden-600 dark:text-golden-400">Updated</span>
+          </h1>
+          <p class="text-base sm:text-lg text-earth-600 dark:text-gray-400 mb-6 leading-relaxed">
+            Join our community of supporters and stay informed about our work, upcoming events, and the impact we're making together.
+          </p>
+          
+          {/* Compact signup for hero */}
+          <div class="hidden lg:block">
+            <NewsletterSignup variant="compact" showNameField={false} />
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 border border-golden-100 dark:border-gray-700">
+            <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-golden-100 to-golden-200 dark:from-golden-900/30 dark:to-golden-800/30 flex items-center justify-center text-golden-600 dark:text-golden-400 mb-6">
+              <Mail className="w-8 h-8" />
+            </div>
+            <h3 class="text-xl font-bold text-earth-900 dark:text-gray-100 mb-3">Why Subscribe?</h3>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-3 text-earth-600 dark:text-gray-400">
+                <Sparkles className="w-5 h-5 text-golden-500 flex-shrink-0 mt-0.5" />
+                <span>Exclusive updates on our initiatives</span>
+              </li>
+              <li class="flex items-start gap-3 text-earth-600 dark:text-gray-400">
+                <Sparkles className="w-5 h-5 text-golden-500 flex-shrink-0 mt-0.5" />
+                <span>Heartwarming impact stories</span>
+              </li>
+              <li class="flex items-start gap-3 text-earth-600 dark:text-gray-400">
+                <Sparkles className="w-5 h-5 text-golden-500 flex-shrink-0 mt-0.5" />
+                <span>Volunteer opportunities</span>
+              </li>
+              <li class="flex items-start gap-3 text-earth-600 dark:text-gray-400">
+                <Sparkles className="w-5 h-5 text-golden-500 flex-shrink-0 mt-0.5" />
+                <span>Quarterly transparency reports</span>
+              </li>
+            </ul>
+          </div>
+          
+          {/* Decorative elements */}
+          <div class="absolute -bottom-4 -right-4 w-24 h-24 bg-golden-200 dark:bg-golden-900/20 rounded-2xl -z-10"></div>
+          <div class="absolute -top-4 -left-4 w-16 h-16 bg-golden-100 dark:bg-golden-900/10 rounded-xl -z-10"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Benefits Section */}
+  <section class="py-16 lg:py-24 bg-white dark:bg-gray-800 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <Badge variant="outline" className="mb-4 text-golden-700 dark:text-golden-400 border-golden-300 dark:border-golden-500/50">What You'll Receive</Badge>
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-earth-900 dark:text-gray-100">
+          Newsletter <span class="text-golden-600 dark:text-golden-400">Benefits</span>
+        </h2>
+        <p class="text-earth-600 dark:text-gray-400 mt-4 max-w-2xl mx-auto">
+          Our newsletter keeps you informed and engaged with our mission to serve the community.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {benefits.map((benefit) => (
+          <Card className="text-center hover:shadow-lg transition-all dark:bg-gray-800 dark:border-gray-700 group">
+            <CardContent className="p-6">
+              <div class="w-14 h-14 mx-auto rounded-xl bg-gradient-to-br from-golden-100 to-golden-200 dark:from-golden-900/30 dark:to-golden-800/30 flex items-center justify-center text-golden-600 dark:text-golden-400 mb-4 group-hover:scale-110 transition-transform">
+                <benefit.icon className="w-7 h-7" />
+              </div>
+              <h3 class="text-lg font-bold text-earth-900 dark:text-gray-100 mb-2">{benefit.title}</h3>
+              <p class="text-earth-600 dark:text-gray-400 text-sm">{benefit.description}</p>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Newsletter Signup Form Section */}
+  <section class="py-16 lg:py-24 bg-cream-50 dark:bg-gray-900 transition-colors">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 lg:p-12 border border-golden-100 dark:border-gray-700">
+        <NewsletterSignup 
+          variant="full"
+          title="Join Our Newsletter"
+          description="Fill in your details below to start receiving our monthly newsletter."
+          showNameField={true}
+        />
+      </div>
+    </div>
+  </section>
+
+  {/* Past Newsletters Section */}
+  <section class="py-16 lg:py-24 bg-white dark:bg-gray-800 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <Badge variant="outline" className="mb-4 text-golden-700 dark:text-golden-400 border-golden-300 dark:border-golden-500/50">Previous Issues</Badge>
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-earth-900 dark:text-gray-100">
+          Past <span class="text-golden-600 dark:text-golden-400">Newsletters</span>
+        </h2>
+        <p class="text-earth-600 dark:text-gray-400 mt-4 max-w-2xl mx-auto">
+          Browse our previous newsletters to see what you've been missing.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {pastNewsletters.map((newsletter) => (
+          <Card className={`group hover:shadow-xl transition-all overflow-hidden dark:bg-gray-800 dark:border-gray-700 ${newsletter.featured ? 'ring-2 ring-golden-400 dark:ring-golden-500' : ''}`}>
+            <CardContent className="p-6">
+              {newsletter.featured && (
+                <span class="inline-flex items-center gap-1 px-2.5 py-1 bg-golden-100 dark:bg-golden-900/30 text-golden-700 dark:text-golden-400 text-xs font-medium rounded-full mb-4">
+                  <Sparkles className="w-3 h-3" />
+                  Featured
+                </span>
+              )}
+              <div class="flex items-center gap-2 text-sm text-earth-500 dark:text-gray-500 mb-3">
+                <Calendar className="w-4 h-4" />
+                <span>{formatDate(newsletter.date)}</span>
+              </div>
+              <h3 class="text-lg font-bold text-earth-900 dark:text-gray-100 mb-2 group-hover:text-golden-700 dark:group-hover:text-golden-400 transition-colors">
+                {newsletter.title}
+              </h3>
+              <p class="text-earth-600 dark:text-gray-400 text-sm mb-4">
+                {newsletter.excerpt}
+              </p>
+              <button class="text-golden-600 dark:text-golden-400 hover:text-golden-700 dark:hover:text-golden-300 text-sm font-medium inline-flex items-center gap-1 transition-colors">
+                Read More
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14"/>
+                  <path d="m12 5 7 7-7 7"/>
+                </svg>
+              </button>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      <div class="text-center mt-8">
+        <Button variant="outline" className="border-golden-500 text-golden-700 dark:text-golden-400 hover:bg-golden-50 dark:hover:bg-golden-900/20 rounded-full px-8">
+          View All Newsletters
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  {/* Unsubscribe Info */}
+  <section class="py-12 lg:py-16 bg-cream-50 dark:bg-gray-900 transition-colors border-t border-golden-100 dark:border-gray-700">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h3 class="text-lg font-bold text-earth-900 dark:text-gray-100 mb-3">Manage Your Subscription</h3>
+      <p class="text-earth-600 dark:text-gray-400 text-sm mb-4">
+        We respect your inbox. You can unsubscribe at any time by clicking the unsubscribe link at the bottom of any newsletter email, or 
+        <a href="/contact" class="text-golden-600 dark:text-golden-400 hover:underline">contact us</a> directly.
+      </p>
+      <p class="text-earth-500 dark:text-gray-500 text-xs">
+        Your email address will never be shared with third parties. Read our 
+        <a href="/privacy" class="text-golden-600 dark:text-golden-400 hover:underline">Privacy Policy</a>.
+      </p>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
