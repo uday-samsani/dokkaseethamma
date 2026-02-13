@@ -27,24 +27,25 @@
   }
 
   .dark {
-    --background: 220 15% 10%;
-    --foreground: 30 10% 95%;
-    --card: 220 15% 12%;
-    --card-foreground: 30 10% 95%;
-    --popover: 220 15% 12%;
-    --popover-foreground: 30 10% 95%;
-    --primary: 36 80% 50%;
-    --primary-foreground: 220 15% 10%;
-    --secondary: 220 15% 18%;
-    --secondary-foreground: 30 10% 95%;
-    --muted: 220 15% 18%;
-    --muted-foreground: 30 10% 65%;
+    /* Improved dark palette using slate colors */
+    --background: 222 47% 7%; /* slate-950: #020617 */
+    --foreground: 210 40% 98%; /* slate-50: #f8fafc */
+    --card: 222 47% 9%; /* slightly lighter than bg */
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 36 80% 50%; /* golden accent */
+    --primary-foreground: 222 47% 7%;
+    --secondary: 217 33% 17%; /* slate-800: #1e293b */
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%; /* slate-400: #94a3b8 */
     --accent: 36 70% 50%;
-    --accent-foreground: 220 15% 10%;
+    --accent-foreground: 222 47% 7%;
     --destructive: 0 62% 50%;
     --destructive-foreground: 0 0% 98%;
-    --border: 220 15% 20%;
-    --input: 220 15% 20%;
+    --border: 217 33% 20%; /* slate-700/800 mix */
+    --input: 217 33% 17%;
     --ring: 36 80% 50%;
   }
 }
@@ -57,7 +58,7 @@
     @apply bg-cream-50 text-earth-900 antialiased;
   }
   .dark body {
-    @apply bg-gray-900 text-gray-100;
+    @apply bg-slate-950 text-slate-50;
   }
 }
 

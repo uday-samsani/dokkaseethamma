@@ -14,7 +14,7 @@ const navLinks = [
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 bg-cream-50/95 dark:bg-gray-900/95 backdrop-blur-sm border-b border-golden-200/50 dark:border-gray-700/50 transition-colors">
+<header class="fixed top-0 left-0 right-0 z-50 bg-cream-50/95 dark:bg-slate-900/95 backdrop-blur-sm border-b border-golden-200/50 dark:border-slate-700/50 transition-colors">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <nav class="flex items-center justify-between h-16 lg:h-20">
       <!-- Logo -->
@@ -26,7 +26,7 @@ const currentPath = Astro.url.pathname;
           </svg>
         </div>
         <div class="hidden sm:block">
-          <span class="text-lg lg:text-xl font-bold text-earth-900 dark:text-gray-100">Dokka Seethamma</span>
+          <span class="text-lg lg:text-xl font-bold text-earth-900 dark:text-slate-100">Dokka Seethamma</span>
           <span class="block text-xs text-golden-700 dark:text-golden-400 -mt-1">Charitable Trust</span>
         </div>
       </a>
@@ -40,7 +40,7 @@ const currentPath = Astro.url.pathname;
               'text-sm font-medium transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-golden-500 after:transition-transform',
               currentPath === link.href 
                 ? 'text-golden-700 dark:text-golden-400 after:scale-x-100' 
-                : 'text-earth-600 dark:text-gray-300 hover:text-golden-700 dark:hover:text-golden-400 after:scale-x-0 hover:after:scale-x-100'
+                : 'text-earth-600 dark:text-slate-300 hover:text-golden-700 dark:hover:text-golden-400 after:scale-x-0 hover:after:scale-x-100'
             ]}
           >
             {link.label}
@@ -50,7 +50,7 @@ const currentPath = Astro.url.pathname;
         <!-- Theme Toggle Button -->
         <button
           data-theme-toggle
-          class="min-h-[44px] min-w-[44px] p-2 rounded-lg text-earth-600 dark:text-gray-300 hover:text-golden-700 dark:hover:text-golden-400 hover:bg-golden-100 dark:hover:bg-gray-800 transition-colors flex items-center justify-center"
+          class="min-h-[44px] min-w-[44px] p-2 rounded-lg text-earth-600 dark:text-slate-300 hover:text-golden-700 dark:hover:text-golden-400 hover:bg-golden-100 dark:hover:bg-slate-800 transition-colors flex items-center justify-center"
           aria-label="Toggle theme"
         >
           <Sun data-sun-icon class="w-5 h-5 hidden" />
@@ -70,20 +70,20 @@ const currentPath = Astro.url.pathname;
         <!-- Theme Toggle Button (Mobile) -->
         <button
           data-theme-toggle
-          class="min-h-[44px] min-w-[44px] p-2.5 rounded-lg text-earth-600 dark:text-gray-300 hover:text-golden-700 dark:hover:text-golden-400 hover:bg-golden-100 dark:hover:bg-gray-800 transition-colors flex items-center justify-center"
+          class="min-h-[44px] min-w-[44px] p-2.5 rounded-lg text-earth-600 dark:text-slate-300 hover:text-golden-700 dark:hover:text-golden-400 hover:bg-golden-100 dark:hover:bg-slate-800 transition-colors flex items-center justify-center"
           aria-label="Toggle theme"
         >
           <Sun data-sun-icon class="w-5 h-5 hidden" />
           <Moon data-moon-icon class="w-5 h-5" />
         </button>
-        <button id="mobile-menu-btn" class="min-h-[44px] min-w-[44px] p-2.5 rounded-lg text-earth-600 dark:text-gray-300 hover:text-golden-700 dark:hover:text-golden-400 hover:bg-golden-100 dark:hover:bg-gray-800 transition-colors flex items-center justify-center">
+        <button id="mobile-menu-btn" class="min-h-[44px] min-w-[44px] p-2.5 rounded-lg text-earth-600 dark:text-slate-300 hover:text-golden-700 dark:hover:text-golden-400 hover:bg-golden-100 dark:hover:bg-slate-800 transition-colors flex items-center justify-center">
           <Menu class="w-6 h-6" />
         </button>
       </div>
     </nav>
 
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="lg:hidden hidden bg-cream-50 dark:bg-gray-900 border-t border-golden-200/50 dark:border-gray-700/50 pb-4">
+    <div id="mobile-menu" class="lg:hidden hidden bg-cream-50 dark:bg-slate-900 border-t border-golden-200/50 dark:border-slate-700/50 pb-4">
       <div class="flex flex-col gap-1 pt-4">
         {navLinks.map(link => (
           <a
@@ -91,8 +91,8 @@ const currentPath = Astro.url.pathname;
             class:list={[
               'min-h-[44px] px-4 py-3 text-base font-medium rounded-lg transition-colors flex items-center',
               currentPath === link.href
-                ? 'text-golden-700 dark:text-golden-400 bg-golden-100 dark:bg-gray-800'
-                : 'text-earth-600 dark:text-gray-300 hover:text-golden-700 dark:hover:text-golden-400 hover:bg-golden-50 dark:hover:bg-gray-800'
+                ? 'text-golden-700 dark:text-golden-400 bg-golden-100 dark:bg-slate-800'
+                : 'text-earth-600 dark:text-slate-300 hover:text-golden-700 dark:hover:text-golden-400 hover:bg-golden-50 dark:hover:bg-slate-800'
             ]}
           >
             {link.label}

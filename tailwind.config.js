@@ -5,13 +5,20 @@ module.exports = {
   safelist: [
     'dark',
     {
+      pattern: /dark:bg-slate-(700|800|900|950)/,
+    },
+    {
+      pattern: /dark:text-slate-(50|100|200|300|400)/,
+    },
+    {
+      pattern: /dark:border-slate-(600|700|800)/,
+    },
+    // Keep gray for backward compatibility during transition
+    {
       pattern: /dark:bg-gray-(700|800|900)/,
     },
     {
       pattern: /dark:text-gray-(100|300|400)/,
-    },
-    {
-      pattern: /dark:border-gray-(600|700)/,
     },
   ],
   theme: {

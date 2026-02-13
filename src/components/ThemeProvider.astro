@@ -23,6 +23,9 @@
     } else {
       document.documentElement.classList.remove('dark');
     }
+    
+    // Store initial theme for icon state
+    window.__INITIAL_THEME__ = theme;
   })();
 </script>
 
@@ -73,21 +76,31 @@
       btn.addEventListener('click', toggleTheme);
     });
     
-    // Set initial icon state
-    updateToggleIcons(getCurrentTheme());
+    // Set initial icon state based on current theme
+    const currentTheme = getCurrentTheme();
+    updateToggleIcons(currentTheme);
     
     // Listen for system theme changes
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-      if (!localStorage.getItem('theme')) {
+      // Only auto-switch if user hasn't manually set a preference
+      if (!localStorage.getItem('theme') || localStorage.getItem('theme') === 'system') {
         setTheme(e.matches ? 'dark' : 'light');
       }
     });
+    
+    // Expose theme functions globally for debugging
+    window.themeUtils = {
+      get: getCurrentTheme,
+      set: setTheme,
+      toggle: toggleTheme
+    };
   }
 
   // Initialize on page load
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initTheme);
   } else {
+    // DOM already loaded
     initTheme();
   }
 </script>
