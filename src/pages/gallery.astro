@@ -5,15 +5,27 @@ import Footer from '@/components/Footer.astro';
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { getCollection } from 'astro:content';
 
-const galleryItems = [
-  { src: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?w=1200&q=80', title: 'Community Food Distribution', category: 'events', description: 'Volunteers serving meals' },
-  { src: 'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=1200&q=80', title: 'Volunteers at Work', category: 'volunteers', description: 'Preparing food packages' },
-  { src: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1200&q=80', title: 'Helping Hands', category: 'beneficiaries', description: 'Reaching out to those in need' },
-  { src: 'https://images.unsplash.com/photo-1593113630400-ea4288922497?w=1200&q=80', title: 'Group Volunteering', category: 'volunteers', description: 'Team ready for distribution' },
-  { src: 'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=1200&q=80', title: 'Community Support', category: 'beneficiaries', description: 'Supporting families in need' },
-  { src: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=1200&q=80', title: 'Kitchen Preparation', category: 'events', description: 'Preparing nutritious meals' },
-];
+// Fetch gallery items from TinaCMS
+const cmsGalleryItems = await getCollection('gallery');
+
+// Fallback to hardcoded if no CMS content
+const galleryItems = cmsGalleryItems.length > 0 
+  ? cmsGalleryItems.map(item => ({
+      src: item.data.image,
+      title: item.data.title,
+      category: item.data.category,
+      description: item.data.description || ''
+    }))
+  : [
+    { src: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?w=1200&q=80', title: 'Community Food Distribution', category: 'events', description: 'Volunteers serving meals' },
+    { src: 'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=1200&q=80', title: 'Volunteers at Work', category: 'volunteers', description: 'Preparing food packages' },
+    { src: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1200&q=80', title: 'Helping Hands', category: 'beneficiaries', description: 'Reaching out to those in need' },
+    { src: 'https://images.unsplash.com/photo-1593113630400-ea4288922497?w=1200&q=80', title: 'Group Volunteering', category: 'volunteers', description: 'Team ready for distribution' },
+    { src: 'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=1200&q=80', title: 'Community Support', category: 'beneficiaries', description: 'Supporting families in need' },
+    { src: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=1200&q=80', title: 'Kitchen Preparation', category: 'events', description: 'Preparing nutritious meals' },
+  ];
 
 const categories = [
   { id: 'all', label: 'All Photos' },
@@ -67,14 +79,20 @@ const categories = [
           </div>
         ))}
       </div>
+      
+      {cmsGalleryItems.length === 0 && (
+        <div class="text-center mt-8 text-earth-500 dark:text-gray-400 text-sm">
+          <p>Add photos via <a href="/admin" class="text-golden-600 dark:text-golden-400 underline">TinaCMS Admin</a> to display them here.</p>
+        </div>
+      )}
     </div>
   </section>
 
   <!-- Lightbox -->
   <div id="lightbox" class="fixed inset-0 z-50 hidden bg-earth-900/95 backdrop-blur-sm">
-    <button id="lightbox-close" class="absolute top-2 sm:top-4 right-2 sm:right-4 z-20 min-w-[44px] min-h-[44px] w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors"><X className="w-5 h-5 sm:w-6 sm:h-6" /></button>
-    <button id="lightbox-prev" class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 min-w-[44px] min-h-[44px] w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors"><ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" /></button>
-    <button id="lightbox-next" class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 min-w-[44px] min-h-[44px] w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors"><ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" /></button>
+    <button id="lightbox-close" class="absolute top-2 sm:top-4 right-2 sm:right-4 z-20 min-w-[44px] min-h-[44px] w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors"><X class="w-5 h-5 sm:w-6 sm:h-6" /></button>
+    <button id="lightbox-prev" class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 min-w-[44px] min-h-[44px] w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors"><ChevronLeft class="w-5 h-5 sm:w-6 sm:h-6" /></button>
+    <button id="lightbox-next" class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 min-w-[44px] min-h-[44px] w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors"><ChevronRight class="w-5 h-5 sm:w-6 sm:h-6" /></button>
     <div class="relative h-full flex flex-col items-center justify-center p-12 sm:p-8 lg:p-12 pt-16 sm:pt-12">
       <img id="lightbox-img" src="" alt="" class="max-w-full max-h-[70vh] sm:max-h-[80vh] object-contain rounded-lg shadow-2xl" />
       <div class="mt-4 text-center px-4">
