@@ -35,11 +35,12 @@
       return document.documentElement.classList.contains('dark') ? 'dark' : 'light';
     }
     
-    function setTheme(theme: string) {
+    function setTheme(theme) {
+      const html = document.documentElement;
       if (theme === 'dark') {
-        document.documentElement.classList.add('dark');
+        html.classList.add('dark');
       } else {
-        document.documentElement.classList.remove('dark');
+        html.classList.remove('dark');
       }
       localStorage.setItem('theme', theme);
       updateToggleIcons(theme);
@@ -51,7 +52,7 @@
       setTheme(newTheme);
     }
     
-    function updateToggleIcons(theme: string) {
+    function updateToggleIcons(theme) {
       document.querySelectorAll('[data-theme-toggle]').forEach(btn => {
         const sunIcon = btn.querySelector('[data-sun-icon]');
         const moonIcon = btn.querySelector('[data-moon-icon]');
@@ -84,9 +85,9 @@
   }
 
   // Initialize on page load
-  document.addEventListener('DOMContentLoaded', initTheme);
-  // Also run immediately in case DOM is already loaded
-  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTheme);
+  } else {
     initTheme();
   }
 </script>
