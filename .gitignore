@@ -30,3 +30,9 @@ tina/__generated__/
 # Uploaded media files (keep folder, ignore contents)
 public/uploads/*
 !public/uploads/README.md
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+!.env.example
