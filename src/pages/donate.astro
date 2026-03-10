@@ -8,6 +8,36 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Heart, Users, BookOpen, CheckCircle } from "lucide-react";
+import { getCollection } from 'astro:content';
+
+// Fetch donation settings from TinaCMS
+const donationSettingsCollection = await getCollection('donation-settings');
+const donationSettings = donationSettingsCollection.length > 0 ? donationSettingsCollection[0].data : null;
+
+// Fallback to hardcoded values if no CMS content
+const bankDetails = donationSettings ? {
+  accountName: donationSettings.accountName,
+  accountNumber: donationSettings.accountNumber,
+  ifsc: donationSettings.ifscCode,
+  bank: donationSettings.bankName,
+  branch: donationSettings.branchName,
+} : {
+  accountName: 'Dokka Seethamma Charitable Trust',
+  accountNumber: 'XXXX XXXX XXXX XXXX',
+  ifsc: 'XXXX0000XXX',
+  bank: 'Bank Name',
+  branch: 'Branch Location',
+};
+
+const upiDetails = donationSettings ? {
+  upiId: donationSettings.upiId,
+  upiQrCode: donationSettings.upiQrCode,
+} : {
+  upiId: 'dokkaseethamma@upi',
+  upiQrCode: null,
+};
+
+const contactEmail = donationSettings ? donationSettings.contactEmail : 'contact@dokkaseethamma.org';
 
 const donationAmounts = [
   { amount: 500, label: '₹500', description: 'Feeds 5 people' },
@@ -22,14 +52,6 @@ const impactItems = [
   { amount: '₹1,000', impact: 'Supports community kitchen for a day', icon: '🏠' },
   { amount: '₹5,000', impact: 'Sponsors a small event', icon: '🎉' },
 ];
-
-const bankDetails = {
-  accountName: 'Dokka Seethamma Charitable Trust',
-  accountNumber: 'XXXX XXXX XXXX XXXX',
-  ifsc: 'XXXX0000XXX',
-  bank: 'Bank Name',
-  branch: 'Branch Location',
-};
 ---
 
 <Layout title="Donate" description="Support Dokka Seethamma Charitable Trust.">
@@ -74,7 +96,7 @@ const bankDetails = {
             </div>
             <div class="space-y-2"><Label for="donor-phone" className="dark:text-gray-300">Phone</Label><Input id="donor-phone" name="phone" type="tel" className="dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100" /></div>
             <div class="pt-4">
-              <p class="text-sm text-earth-500 dark:text-gray-400 mb-4">* Currently accepting donations via bank transfer.</p>
+              <p class="text-sm text-earth-500 dark:text-gray-400 mb-4">* Currently accepting donations via bank transfer or UPI.</p>
               <Button type="submit" className="w-full min-h-[44px] bg-gradient-to-r from-golden-500 to-golden-600 hover:from-golden-600 hover:to-golden-700 text-white rounded-full">
                 <Heart className="w-5 h-5 mr-2" />Proceed to Donate
               </Button>
@@ -98,18 +120,29 @@ const bankDetails = {
                 ))}
               </div>
               <div class="mt-4 sm:mt-6 p-3 sm:p-4 bg-golden-100 dark:bg-golden-900/30 rounded-lg">
-                <p class="text-xs sm:text-sm text-golden-800 dark:text-golden-200"><strong>Note:</strong> Email transaction details to <a href="mailto:contact@dokkaseethamma.org" class="underline">contact@dokkaseethamma.org</a></p>
+                <p class="text-xs sm:text-sm text-golden-800 dark:text-golden-200"><strong>Note:</strong> Email transaction details to <a href={`mailto:${contactEmail}`} class="underline">{contactEmail}</a></p>
               </div>
             </CardContent>
           </Card>
 
           <Card className="border-dashed border-2 border-cream-300 dark:border-gray-600 dark:bg-gray-800">
             <CardContent className="p-8 text-center">
-              <div class="w-48 h-48 mx-auto bg-cream-100 dark:bg-gray-700 rounded-lg flex items-center justify-center mb-4">
-                <CheckCircle className="w-16 h-16 text-cream-400 dark:text-gray-500" />
-              </div>
+              {upiDetails.upiQrCode ? (
+                <div class="w-48 h-48 mx-auto mb-4">
+                  <img 
+                    src={upiDetails.upiQrCode} 
+                    alt="UPI QR Code" 
+                    class="w-full h-full object-contain rounded-lg"
+                  />
+                </div>
+              ) : (
+                <div class="w-48 h-48 mx-auto bg-cream-100 dark:bg-gray-700 rounded-lg flex items-center justify-center mb-4">
+                  <CheckCircle className="w-16 h-16 text-cream-400 dark:text-gray-500" />
+                </div>
+              )}
               <h4 class="font-semibold text-earth-900 dark:text-gray-100 mb-2">UPI Payment</h4>
-              <p class="text-golden-600 dark:text-golden-400 font-medium">dokkaseethamma@upi</p>
+              <p class="text-golden-600 dark:text-golden-400 font-medium">{upiDetails.upiId}</p>
+              <p class="text-xs text-earth-500 dark:text-gray-400 mt-2">Scan QR code or use UPI ID</p>
             </CardContent>
           </Card>
         </div>

@@ -336,6 +336,70 @@ export default defineConfig({
           },
         ],
       },
+      {
+        name: "donationSettings",
+        label: "Donation Settings",
+        path: "src/content/donation-settings",
+        format: "md",
+        ui: {
+          allowedActions: {
+            create: false,
+            delete: false,
+          },
+        },
+        fields: [
+          {
+            type: "image",
+            name: "upiQrCode",
+            label: "UPI QR Code Image",
+            description: "Upload the UPI QR code image for scanning",
+          },
+          {
+            type: "string",
+            name: "upiId",
+            label: "UPI ID",
+            description: "UPI ID for payments (e.g., dokkaseethamma@upi)",
+            required: true,
+          },
+          {
+            type: "string",
+            name: "accountName",
+            label: "Bank Account Name",
+            required: true,
+          },
+          {
+            type: "string",
+            name: "accountNumber",
+            label: "Bank Account Number",
+            required: true,
+          },
+          {
+            type: "string",
+            name: "ifscCode",
+            label: "IFSC Code",
+            required: true,
+          },
+          {
+            type: "string",
+            name: "bankName",
+            label: "Bank Name",
+            required: true,
+          },
+          {
+            type: "string",
+            name: "branchName",
+            label: "Branch Name",
+            required: true,
+          },
+          {
+            type: "string",
+            name: "contactEmail",
+            label: "Contact Email for Donation Receipts",
+            description: "Email address where donors should send transaction details",
+            required: true,
+          },
+        ],
+      },
     ],
   },
 });

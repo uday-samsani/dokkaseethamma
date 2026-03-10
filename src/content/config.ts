@@ -78,6 +78,20 @@ const membersCollection = defineCollection({
   }),
 });
 
+const donationSettingsCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    upiQrCode: z.string().optional(),
+    upiId: z.string(),
+    accountName: z.string(),
+    accountNumber: z.string(),
+    ifscCode: z.string(),
+    bankName: z.string(),
+    branchName: z.string(),
+    contactEmail: z.string(),
+  }),
+});
+
 export const collections = {
   events: eventsCollection,
   gallery: galleryCollection,
@@ -86,4 +100,5 @@ export const collections = {
   newsletters: newslettersCollection,
   transparency: transparencyCollection,
   members: membersCollection,
+  'donation-settings': donationSettingsCollection,
 };
