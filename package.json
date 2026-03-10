@@ -6,13 +6,16 @@
     "dev": "astro dev",
     "dev:all": "concurrently \"npm run tina\" \"npm run dev\"",
     "build": "astro build",
-    "preview": "astro preview",
+    "preview": "npm run build && wrangler dev",
     "astro": "astro",
     "tina": "tinacms dev",
     "tina:build": "tinacms build",
-    "tina:start": "tinacms start"
+    "tina:start": "tinacms start",
+    "deploy": "npm run build && wrangler deploy",
+    "cf-typegen": "wrangler types"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^12.6.12",
     "@astrojs/react": "^4.4.2",
     "@astrojs/tailwind": "^6.0.2",
     "@radix-ui/react-accordion": "^1.2.12",
@@ -35,5 +38,8 @@
     "tailwindcss": "^3.4.19",
     "tailwindcss-animate": "^1.0.7",
     "tinacms": "^3.4.1"
+  },
+  "devDependencies": {
+    "wrangler": "^4.71.0"
   }
 }
