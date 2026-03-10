@@ -22,3 +22,11 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# TinaCMS generated files
+admin/
+tina/__generated__/
+
+# Uploaded media files (keep folder, ignore contents)
+public/uploads/*
+!public/uploads/README.md

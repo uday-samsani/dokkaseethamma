@@ -6,6 +6,14 @@ import react from '@astrojs/react';
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind(), react()],
-  site: 'https://dokkaseethamma.org',
+  site: process.env.PUBLIC_SITE_URL || 'https://dokkaseethamma.org',
   output: 'static',
+  prefetch: {
+    prefetchAll: true,
+  },
+  image: {
+    remotePatterns: [
+      { protocol: 'https', hostname: 'images.unsplash.com' },
+    ],
+  },
 });

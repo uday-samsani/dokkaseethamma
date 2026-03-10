@@ -295,6 +295,47 @@ export default defineConfig({
           },
         ],
       },
+      {
+        name: "members",
+        label: "Team Members",
+        path: "src/content/members",
+        format: "md",
+        fields: [
+          {
+            type: "string",
+            name: "name",
+            label: "Full Name",
+            isTitle: true,
+            required: true,
+          },
+          {
+            type: "string",
+            name: "role",
+            label: "Role/Title",
+            required: true,
+          },
+          {
+            type: "image",
+            name: "photo",
+            label: "Profile Photo",
+            required: true,
+          },
+          {
+            type: "string",
+            name: "description",
+            label: "Short Description",
+            ui: {
+              component: "textarea",
+            },
+          },
+          {
+            type: "number",
+            name: "order",
+            label: "Display Order",
+            description: "Lower numbers appear first",
+          },
+        ],
+      },
     ],
   },
 });

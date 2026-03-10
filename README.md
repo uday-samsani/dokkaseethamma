@@ -69,12 +69,18 @@ cd dokkaseethamma
 npm install
 ```
 
-3. Start the development server:
+3. Set up environment variables:
+```bash
+cp .env.example .env
+# Edit .env and add your TinaCloud credentials for production
+```
+
+4. Start the development server:
 ```bash
 npm run dev
 ```
 
-4. Open [http://localhost:4321](http://localhost:4321) in your browser
+5. Open [http://localhost:4321](http://localhost:4321) in your browser
 
 ## 📝 Available Scripts
 
@@ -174,11 +180,25 @@ Edit `src/pages/donate.astro` and update the `bankDetails` object with actual ac
 
 ## 🌐 Deployment
 
+### TinaCloud Setup (Required for CMS)
+
+1. Go to https://app.tina.io and create an account
+2. Create a new project and link your GitHub repository
+3. Copy the `Client ID` and `Token` from the project settings
+4. Add these to your environment variables in your hosting platform:
+   - `TINA_CLIENT_ID`
+   - `TINA_TOKEN`
+   - `TINA_PUBLIC_IS_LOCAL=false`
+
 ### Static Hosting (Recommended)
 
 Build the site for static hosting:
 
 ```bash
+# Build Tina CMS admin first
+npm run tina:build
+
+# Then build the Astro site
 npm run build
 ```
 
@@ -192,8 +212,12 @@ The `dist/` folder will contain the static files ready for deployment to:
 ### Netlify Deployment
 
 1. Connect your GitHub repo to Netlify
-2. Build command: `npm run build`
+2. Build command: `npm run tina:build && npm run build`
 3. Publish directory: `dist`
+4. Add environment variables in Netlify dashboard:
+   - `TINA_CLIENT_ID`
+   - `TINA_TOKEN`
+   - `TINA_PUBLIC_IS_LOCAL=false`
 
 ### Vercel Deployment
 
@@ -201,6 +225,8 @@ The `dist/` folder will contain the static files ready for deployment to:
 npm i -g vercel
 vercel
 ```
+
+Set environment variables in Vercel dashboard after deployment.
 
 ## 🔗 Integrating Payment Gateway
 
