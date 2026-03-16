@@ -7,9 +7,9 @@ const branch = process.env.HEAD || process.env.VERCEL_GIT_COMMIT_REF || "cms-int
 // For production (TinaCloud), set TINA_CLIENT_ID and TINA_TOKEN env vars
 export default defineConfig({
   branch,
-  // clientId and token are null for local development
-  // For production, set these via environment variables
-  clientId: process.env.TINA_CLIENT_ID || null,
+  // TinaCloud client ID for production
+  // For local development, these can be null
+  clientId: process.env.TINA_CLIENT_ID || "fe93984b-5e13-4262-a966-8e8c6777ed47",
   token: process.env.TINA_TOKEN || null,
   build: {
     outputFolder: "admin",

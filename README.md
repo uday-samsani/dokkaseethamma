@@ -284,8 +284,8 @@ This project is licensed under the MIT License.
 
 ## 📞 Contact
 
-- Website: [https://dokkaseethamma.org](https://dokkaseethamma.org)
-- Email: contact@dokkaseethamma.org
+- Website: [https://dokkaseethamma.ngo](https://dokkaseethamma.ngo)
+- Email: contact@dokkaseethamma.ngo
 - Phone: +91 99999 99999
 
 ---
